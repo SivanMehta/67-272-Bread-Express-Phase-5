@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
     rescue_from ActiveRecord::RecordNotFound do |exception|
-    redirect_to home_path, error: "Record not found in the system."
+        redirect_to home_path, error: "Record not found in the system."
     end
   
     private
