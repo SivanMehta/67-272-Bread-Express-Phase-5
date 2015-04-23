@@ -4,10 +4,12 @@ BreadExpress::Application.routes.draw do
   resources :addresses
   resources :customers
   resources :orders
+  resources :items
 
   
   # Authentication routes
-
+  get 'login' => 'sessions#new', as: :login
+  get 'signup' => 'customers#new', as: :signup
 
 
   # Semi-static page routes
@@ -19,8 +21,7 @@ BreadExpress::Application.routes.draw do
   get 'cylon' => 'errors#cylon', as: :cylon
   
   # Set the root url
-  root :to => 'home#home'  
-  
+  root :to => 'home#home'
   # Named routes
 
 
