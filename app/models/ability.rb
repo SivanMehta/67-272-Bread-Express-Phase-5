@@ -5,10 +5,42 @@ class Ability
     # set user to new User if not logged in
     user ||= User.new # i.e., a guest user
     
+    # set authorizations for different user roles
+    if user.role? :admin
+      # they get to do it all
+      can :manage, :all
 
+    elsif user.role? :customer
+        # they can read their own profile
+        can :show, User do |u|  
+            u.id == user.id
+        end
 
+        # they can update their own profile
+        can :update, User do |u|
+            u.id == user.id
+        end
 
+        # can see their own orders
+        can :read, Order do |this_order|
+            my_orders = Order.find_by_user_id(user.id).map { |o| o.user_id }
+            my_orders.include? this_order.id
+        end
 
+        # can place an order for themselves
+        can :create, Order
 
+        # can make an address for themselves
+        can :create, Address
+
+        can :update, Address do |a|
+            user_customer = Customer.find_by_user_id(user.id).map { |c| c.user_id }
+            a.customer_id == user_customer
+        end
+      
+    else
+      # guests can only read domains covered (plus home pages)
+      can :read, Domain
+    end
   end
 end
