@@ -3,6 +3,9 @@ class UsersController < ApplicationController
     # before_action :check_login, only: [:edit, :update]
     # authorize_resource
 
+    def show
+    end
+
     def new
         @user = User.new
         session[:user_id] = @user.id

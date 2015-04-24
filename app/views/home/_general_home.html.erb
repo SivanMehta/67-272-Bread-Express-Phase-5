@@ -12,12 +12,16 @@
 	</div>
 	<div class="col s4">
 		<div class="panel clearfix">
-			<h3>Customers:</h3>
-			<p>
-				If you are a registered user, 
-			  <%= link_to "click here to login", login_path %>. If you want 
-			  to create an account with us, <%= link_to "please click to register", signup_path %>.
-			</p>
+			<% if !logged_in? %>
+				<h3>Customers:</h3>
+				<p>
+					If you are a registered user, 
+				  <%= link_to "click here to login", login_path %>. If you want 
+				  to create an account with us, <%= link_to "please click to register", signup_path %>.
+				</p>
+			<% else %>
+				Welcome, <%= link_to current_user.username, user_path(current_user) %>!
+			<% end %>
 		</div>
 	</div>
 </div>
