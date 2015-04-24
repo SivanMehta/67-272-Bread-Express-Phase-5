@@ -1,0 +1,25 @@
+<% if @inactive_items.empty? %>
+  <h4>No inactive items at this time.</h4>
+<% else %>
+  <h4>Inactive Items</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Name</th>
+        <th width="125">Category</th>
+        <th width="200">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inactive_items.each do |item| %>
+        <tr>
+          <td><%= link_to item.name, item_path(item) %></td>
+          <td>$<%= item.category %></td>
+          <td>$<%= item.current_price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%= will_paginate @inactive_items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>
+<p>&nbsp;</p>
