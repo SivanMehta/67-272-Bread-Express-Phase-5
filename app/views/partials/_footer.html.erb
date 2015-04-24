@@ -1,15 +1,32 @@
-
-<footer>
-
-	<%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-  <%= link_to 'About Bread Express', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Privacy Policy', privacy_path %>
-	<br /><br />
-	
-	<div id="copy">
-		Webmaster: <%= mail_to("skmehta@andrew.cmu.edu", "Sivan Mehta", encode: "javascript") %> 
-		&nbsp;&nbsp;&copy 2015
-	</div>
-
+<footer class="page-footer brown" id = "footer">
+    <div class = "container">
+        <div class="row">
+          <div class="col s8">
+            <h4 class="white-text">A&M Bread Express</h4>
+            <p class="grey-text text-lighten-4">Where all your bread needs are attempted to be met with a relatively express purpose</p>
+          </div>
+          <div class="col s4">
+            <h5 class="white-text">Links</h5>
+            <%= link_to ("<i class = 'mdi-editor-insert-drive-file'></i> About").html_safe, about_path,
+                :encode => "javascript",
+                :class => "grey-text text-lighten-3"%> <br />
+            <%= link_to ("<i class = 'mdi-communication-message'></i> Contact").html_safe, contact_path,
+                :encode => "javascript",
+                :class => "grey-text text-lighten-3" %> <br />
+            <%= link_to ("<i class = 'mdi-communication-vpn-key'></i> Privacy Policy").html_safe, privacy_path,
+                :encode => "javascript",
+                :class => "grey-text text-lighten-3"%> <br />
+          </div>
+        </div>
+    </div>
+    <div class = "footer-copyright">
+        <div class = "container">
+            <div class = "row">
+                <div class = "col s8">© 2015 Kind-of Copyright</div>
+                <div class = "col s4">Webamateur:
+                    <span><%= mail_to "skmehta@andrew.cmu.edu", "Sivan Mehta", :encode => "javascript", :class => "white-text" %></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>

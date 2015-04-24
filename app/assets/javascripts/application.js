@@ -13,8 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require foundation
 //= require_tree .
+//*= require materialize
 
-$(function(){ $(document).foundation(); });
+  $(function(){
+    $(function(){
+      $(".dropdown-button").dropdown({ constrain_width: false });
+      $('select').material_select();
+    });
+  });
 
+$(document).ready(function() {
+    $('select').material_select();
+  });
+
+$(".button-collapse").sideNav();
