@@ -1,33 +1,25 @@
 <nav class = "brown">
-  <div class = "nav-wrapper">
-    <%= link_to image_tag('breadexpress_title.png'), home_path %>
-    <ul class="right hide-on-med-and-down">
-      <!-- link to home -->
-      <li><%= link_to "Home", home_path %></li>
-      <% if !logged_in? %>
-        <li><%= link_to "View Menu", items_path %></li>
-      <% end %>
-      <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
-        <!-- options for orders -->
-        <li class="has-dropdown">
-          <%= link_to "Orders", orders_path %>
-          <ul class="dropdown">
-            <li><%= link_to "My Orders", orders_path %></li>
-            <li><%= link_to "New Order", new_order_path %></li>
-          </ul>
-        </li>
+    <div class = "nav-wrapper">
+        <!-- <%= link_to image_tag('breadexpress_title.png'), home_path %> -->
+        <ul class = "right">
+            <!-- link to home -->
+            <li><%= link_to "Home", home_path %></li>
+                <li><%= link_to "View Menu", items_path %></li>
+            <% if !logged_in? %>
+                <li><%= link_to "Login", login_path %></li>           
+            <% end %>
+            <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
+                <!-- options for orders -->
+                <li><%= link_to "My Orders", orders_path %></li>
+                <li><%= link_to "New Order", new_order_path %></li>
+                <!-- options for addresses -->
+                <li><%= link_to "My Addresses", addresses_path %></li>
+                <li><%= link_to "Add an Address", new_address_path %></li>
+                <li><%= link_to "Logout", logout_path %></li>
+                
+            <!-- ADMIN ONLY OPTIONS -->
+            <% end %>
+        </ul>
 
-        <!-- options for addresses -->
-        <li class="has-dropdown">
-          <%= link_to "Addresses", addresses_path %>
-          <ul class="dropdown">
-            <li><%= link_to "My Addresses", addresses_path %></li>
-            <li><%= link_to "Add an Address", new_address_path %></li>
-          </ul>
-        </li>
-      <% end %>
-
-      <!-- ADMIN ONLY OPTIONS -->
-
-  </div class = "nav-wrapper">
+    </div>
 </nav>

@@ -5,11 +5,13 @@ BreadExpress::Application.routes.draw do
   resources :customers
   resources :orders
   resources :items
+  resources :sessions
 
   
   # Authentication routes
   get 'login' => 'sessions#new', as: :login
   get 'signup' => 'customers#new', as: :signup
+  get 'logout' => 'sessions#destroy', as: :logout
 
 
   # Semi-static page routes
