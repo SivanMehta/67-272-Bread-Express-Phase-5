@@ -12,8 +12,8 @@ class Ability
 
     elsif user.role? :customer
         # they can read their own profile
-        can :show, User do |u|  
-            u.id == user.id
+        can :show, Customer do |c|  
+            c.user_id == user.id
         end
 
         # they can update their own profile
