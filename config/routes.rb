@@ -27,6 +27,7 @@ BreadExpress::Application.routes.draw do
   root :to => 'home#home'
   # Named routes
 
+  patch 'item_prices/:item_id' => 'item_prices#create', as: :create_with_item
 
 
   

@@ -4,8 +4,6 @@ class ItemPrice < ActiveRecord::Base
 
   # Relationships
   belongs_to :item
-  accepts_nested_attributes_for :item, reject_if: lambda { |item| item[:price].blank? }, allow_destroy: true
-
 
   # Scopes
   scope :current,       -> { where(end_date:nil) }

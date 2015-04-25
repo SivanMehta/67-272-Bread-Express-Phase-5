@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-    before_action :set_item, only: [:show] #, :edit, :update, :destroy]
+    before_action :set_item, only: [:show, :edit, :update] #, :destroy]
 
     def index
         @active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(10)
@@ -8,6 +8,18 @@ class ItemsController < ApplicationController
     end
 
     def show
+        @item_price = ItemPrice.new
+    end
+
+    def edit
+    end
+
+    def update
+        if @item.update(item_params)
+            redirect_to items_path, notice: "The item was revised in the system."
+        else
+            render action: 'edit'
+        end
     end
 
     def new
@@ -34,6 +46,6 @@ class ItemsController < ApplicationController
         end
 
         def item_params
-            params.require(:item).permit(:name, :category, :picture, :units_per_item, :weight, tasks_attributes: [:price, :start_date])
+            params.require(:item).permit(:name, :category, :picture, :units_per_item, :weight)
         end
 end
