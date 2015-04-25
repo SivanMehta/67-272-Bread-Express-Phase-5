@@ -1,4 +1,4 @@
-<h3><%= @customer.proper_name %></h3>
+<h2><%= @customer.proper_name %></h2>
 
 <p>
   <b>Phone</b>: <%= number_to_phone @customer.phone %>
@@ -6,14 +6,6 @@
 
 <p>
   <b>Email</b>: <%= mail_to @customer.email, @customer.email, encode: "javascript" %>
-</p>
-
-<p>
-  <b>Username</b>: <%= @customer.user.username %>
-</p>
-
-<p>
-  <b>Active</b>: <%= @customer.active ? 'Yes' : 'No' %>
 </p>
 
 <p>
