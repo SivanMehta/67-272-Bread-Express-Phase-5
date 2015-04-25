@@ -15,6 +15,7 @@
                 <!-- options for addresses -->
                 <li><%= link_to "My Addresses", addresses_path %></li>
                 <li><%= link_to "Add an Address", new_address_path %></li>
+                <li><%= link_to current_user.username, user_path(current_user.id) %></li>
                 <li><%= link_to "Logout", logout_path %></li>
                 
             <!-- ADMIN ONLY OPTIONS -->
