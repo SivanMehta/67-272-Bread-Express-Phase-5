@@ -2,3 +2,7 @@
                                                          primary: "active_items", 
                                                          secondary: nil,
                                                          sidebar: "inactive_items"} %>
+
+<% if current_user.role? :admin %>
+    <%= link_to ("<i class='mdi-social-person-add left'></i> New Item").html_safe, new_item_path, :encode => "javascript", :class => "btn waves-light green lighten-1" %>
+<% end %>
