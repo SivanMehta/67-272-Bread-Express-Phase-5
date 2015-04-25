@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
     rescue_from ActiveRecord::RecordNotFound do |exception|
         redirect_to home_path, error: "Record not found in the system."
     end
+
+    rescue_from CanCan::AccessDenied do |exception|
+        flash[:error] = "Access Denied: a #{current_user.role} is not allowed in there"
+        redirect_to home_path
+  end
   
     private
     # Handling authentication
