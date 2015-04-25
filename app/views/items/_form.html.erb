@@ -1,4 +1,4 @@
-<%= form_for(@item) do |form| %>
+<%= simple_nested_form_for(@item) do |item_form| %>
 <% if @item.errors.any? %>
     <ul class = "collection with-header">
         <li class = "collection-header">
@@ -13,22 +13,11 @@
         </ul>
   <% end %>
 
-    <div class = "row">
-        <div class = "input-field col s4">
-            <%= form.label :name %><br />
-            <%= form.text_field :name %>
-        </div>
-        <div class = "col s4">
-          <%= form.label :category %>
-          <%= form.select :category, Item::CATEGORIES %>
-        </div>
-    </div>
-    <div class = "row">
-        <div class = "input-field col s6">
-            <p>Pick a Photo!</p>
-            <%= form.file_field :photo %>
-        </div>
-    </div>
+    <%= render "item_fields", :f => item_form %>
+
+    <%= item_form.simple_fields_for :item_prices do |item_price_form| %>
+        <%= render "item_price_fields", :f => item_price_form %>
+    <% end %>
 
     <div class = "actions">
         <button class="btn green" type="submit" name="action">

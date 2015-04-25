@@ -12,10 +12,28 @@ class ItemsController < ApplicationController
 
     def new
         @item = Item.new
+        item_price = @item.item_prices.build
+    end
+
+    def create
+        @item = Item.new(item_params)
+
+        if @item.save
+            # if saved to database
+            flash[:notice] = "#{@item.name} has been created."
+            redirect_to @item # go to show project page
+        else
+            # return to the 'new' form
+            render :action => 'new'
+        end
     end
 
     private
         def set_item
             @item = Item.find(params[:id])
+        end
+
+        def item_params
+            params.require(:item).permit(:name, :category, :picture, :units_per_item, :weight, tasks_attributes: [:price, :start_date])
         end
 end
