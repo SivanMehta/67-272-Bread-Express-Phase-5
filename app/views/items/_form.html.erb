@@ -1,4 +1,4 @@
-<%= simple_nested_form_for(@item) do |item_form| %>
+<%= simple_form_for(@item) do |item_form| %>
 <% if @item.errors.any? %>
     <ul class = "collection with-header">
         <li class = "collection-header">
@@ -14,11 +14,7 @@
   <% end %>
 
     <%= render "item_fields", :f => item_form %>
-
-    <%= item_form.simple_fields_for :item_prices do |item_price_form| %>
-        <%= render "item_price_fields", :f => item_price_form %>
-    <% end %>
-
+    
     <div class = "actions">
         <button class="btn green" type="submit" name="action">
           <i class='mdi-content-add left'></i> Create Item
