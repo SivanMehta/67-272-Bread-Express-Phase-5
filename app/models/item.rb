@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
   
   # Relationships
   has_many :order_items
-  has_many :item_prices
+  has_many :item_prices, dependent: :destroy
   has_many :orders, through: :order_items
 
   # Scopes
