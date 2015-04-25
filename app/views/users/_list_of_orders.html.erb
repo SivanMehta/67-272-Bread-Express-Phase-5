@@ -1,0 +1,19 @@
+<% if @customer.orders.any? %> <!-- only render if there are customer orders -->
+    <table class = "hoverable">
+        <h4 class = "right-align">Order History</h4>
+        <thead>
+            <th>Date</th>
+            <th>Recipient</th>
+            <th>Amount</th>
+            <th></th>
+        </thead>
+            <% for order in @customer.orders %>
+                <tr>
+                    <td><%= link_to( ('%02d/' % order.date.month) + ('%02d/' % order.date.day) + ("%d" % (order.date.year % 100)), order_path(order) )%></td>
+                    <td><%= order.address.recipient %></td>
+                    <td><%= '$%.2f' % order.grand_total %></td>
+                </tr>
+            <% end %>
+    </table>
+    <br />
+<% end %>

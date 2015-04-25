@@ -1,3 +1,27 @@
-Customer
+<div class = "row">
+    <div class = "col s8">
+        <p>
+          <h2><%= @customer.proper_name %></h2> A Bread Express customer since <%= @customer.created_at.year %>
+        </p>
 
-can see order history at a glance
+        <p>
+            <b>Phone:</b> <%= number_to_phone(@customer.phone) %>
+        </p>
+
+        <p>
+            <b>Email:</b> <%= @customer.email %>
+        </p>
+    </div>
+    <div class = "col s4">
+        <%= render :partial => "list_of_orders" %>
+    </div>
+</div>
+
+<div class = "row">
+
+    <%= link_to ("<i class='mdi-editor-mode-edit left'></i> Edit").html_safe, edit_customer_path,
+        :encode => "javascript",
+        :class => "waves-light blue btn"%>
+
+    <br />
+</div>
