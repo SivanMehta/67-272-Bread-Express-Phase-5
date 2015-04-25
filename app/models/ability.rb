@@ -30,17 +30,21 @@ class Ability
         # can place an order for themselves
         can :create, Order
 
-        # can make an address for themselves
+        # can make and update an address for themselves
         can :create, Address
 
-        can :update, Address do |a|
-            user_customer = Customer.find_by_user_id(user.id).map { |c| c.user_id }
-            a.customer_id == user_customer
+        can :update, Address do |this_address|
+            user_customer = Customer.find_by_user_id(user.id).id
+            this_address.customer_id == user_customer
         end
       
     else
       # guests can only read domains covered (plus home pages)
       can :read, Domain
+
+      can :update, User do |u|
+            u.id == user.id
+        end
     end
   end
 end
