@@ -4,21 +4,29 @@
         <ul class = "right">
             <!-- link to home -->
             <li><%= link_to "Home", home_path %></li>
-                <li><%= link_to "View Menu", items_path %></li>
             <% if !logged_in? %>
                 <li><%= link_to "Login", login_path %></li>           
             <% end %>
-            <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
-                <!-- options for orders -->
-                <li><%= link_to "My Orders", orders_path %></li>
-                <li><%= link_to "New Order", new_order_path %></li>
-                <!-- options for addresses -->
-                <li><%= link_to "My Addresses", addresses_path %></li>
-                <li><%= link_to "Add an Address", new_address_path %></li>
+            <% if logged_in? %>
+                <!-- ADMIN ONLY OPTIONS -->
+                <% if current_user.role? :admin %>
+                    <!-- Make each of these a dropdown in the future -->
+                    <li><%= link_to "Orders", orders_path %></li>
+                    <li><%= link_to "Addresses", addresses_path %></li>
+                    <li><%= link_to "Users", users_path %></li>
+                    <li><%= link_to "Items", items_path %></li>
+
+
+
+                <% elsif current_user.role? :customer %>
+                    <li><%= link_to "View Menu", items_path %></li>
+                    <li><%= link_to "My Orders", orders_path %></li>
+                    <li><%= link_to "New Order", new_order_path %></li>
+                <% end %>
+
+                <!-- should always be able to see this -->
                 <li><%= link_to current_user.username, user_path(current_user.id) %></li>
                 <li><%= link_to "Logout", logout_path %></li>
-                
-            <!-- ADMIN ONLY OPTIONS -->
             <% end %>
         </ul>
 
