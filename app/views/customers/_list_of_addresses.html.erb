@@ -1,0 +1,25 @@
+<% if @customer.addresses.any? %> <!-- only render if there are customer orders -->
+    <table class = "hoverable">
+        <h4 class = "left-align">Addresses</h4>
+        <thead>
+            <th>Recipient</th>
+            <th>Location</th>
+            <th>Billing?</th>
+            <th></th>
+        </thead>
+            <% @customer.addresses.each do |address| %>
+            <tr>
+                <td><%= address.recipient %></td>
+                <td>
+                    <%= render :partial => "partials/address_info", locals: {address: address} %>
+                </td>
+                <td><%= address.is_billing ? "Yes" : "No" %></td>      
+                <td>
+                    <%= link_to(edit_address_path(address), class: 'button tiny radius warning') do %> &nbsp;Edit&nbsp;
+                    <% end %>
+                </td>
+            </tr>
+            <% end %>
+    </table>
+    <br />
+<% end %>
