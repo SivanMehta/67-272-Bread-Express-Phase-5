@@ -20,7 +20,7 @@
 				  to create an account with us, <%= link_to "please click to register", signup_path %>.
 				</p>
 			<% else %>
-				Welcome, <%= link_to current_user.username, user_path(current_user) %>!
+				Welcome, <%= current_user.username %>!
 			<% end %>
 		</div>
 	</div>

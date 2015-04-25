@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     end
 
     rescue_from CanCan::AccessDenied do |exception|
-        flash[:error] = "Access Denied: a #{current_user.role} is not allowed in there"
+        flash[:error] = "Tsk Tsk, a #{current_user.role} like you is not allowed in there"
         redirect_to home_path
   end
   
