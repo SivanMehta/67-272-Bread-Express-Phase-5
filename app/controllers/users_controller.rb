@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
     # before_action :check_login, only: [:edit, :update]
-    # authorize_resource
+    authorize_resource
+
+    def index
+        @users = User.all.alphabetical.paginate(page: params[:page]).per_page(7)
+    end
 
     def show
     end
