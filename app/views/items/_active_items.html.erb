@@ -1,13 +1,14 @@
 <% if @active_items.empty? %>
   <h4>No active items at this time.</h4>
 <% else %>
-  <h4>Active Items</h4>
+  <h4>Available Items</h4>
   <table class="hoverable">
     <thead>
       <tr>
         <th>Name</th>
         <th>Category</th>
         <th>Price</th>
+        <th>Units per Item</th>
       </tr>
     </thead>
     <tbody>
@@ -15,7 +16,8 @@
         <tr>
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= item.category %></td>
-          <td>$<%= item.current_price %></td>
+          <td><%= number_to_currency(item.current_price) %></td>
+          <td><%= pluralize(item.units_per_item, item.category) %></td>
         </tr>
       <% end %>
     </tbody>

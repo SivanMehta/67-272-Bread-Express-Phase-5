@@ -35,7 +35,7 @@ Feature: Manage items
     And I should see "$5.75"
     And I should see "$9.25"
     And I should see "$9.50"
-    And I should see "1 loaf"
+    And I should see "1 bread"
     And I should see "12 muffins"
     And I should see "4 pastries"
     And I should not see "true"

@@ -1,29 +1,36 @@
-<%= image_tag "img_not_available.png" %>
-<div class = "item_info">
-    <h4><%= @item.name %></h4>
-    <% if current_user.role? :admin %>
-        <%= simple_form_for @item_price, url: create_with_item_path(@item), method: :patch do |f| %>
-            <div class = "input-field">
-              <i class = "mdi-editor-attach-money prefix"></i>
-                  <%= f.label "Update Price" %>
-                  <%= f.text_field :price %>
-            </div>
+<div class = "row">
+    <div class = "item_info col s6">
+        <%= image_tag "img_not_available.png" %>
+        <p>
+            <%= @item.description %>
+        </p>
+    </div>
+    <div class = "col s5 offset-s1">
+        <h4><%= @item.name %></h4>
+        <% if current_user.role? :admin %>
+            <%= simple_form_for @item_price, url: create_with_item_path(@item), method: :patch do |f| %>
+                <div class = "input-field">
+                  <i class = "mdi-editor-attach-money prefix"></i>
+                      <%= f.label "Update Price" %>
+                      <%= f.text_field :price %>
+                </div>
+            <% end %>
+
+            <table>
+                <thead>
+                    <th>Price</th>
+                    <th>Date Ended</th>
+                </thead>
+                <% @item.item_prices.chronological.reverse.each do |ip| %>
+                    <tr>
+                        <td><%= number_to_currency(ip.price) %></td>
+                        <td><%= !ip.end_date.nil? ? ip.end_date : "Current" %></td>
+                    </tr>
+                <% end %>
+            </table>
+        <% elsif current_user.role? :customer %>
+            $<%= @item.current_price %></i>
         <% end %>
 
-        <table>
-            <thead>
-                <th>Price</th>
-                <th>Date Ended</th>
-            </thead>
-            <% @item.item_prices.chronological.reverse.each do |ip| %>
-                <tr>
-                    <td>$<%= ip.price %></td>
-                    <td><%= !ip.end_date.nil? ? ip.end_date : "Current" %></td>
-                </tr>
-            <% end %>
-        </table>
-    <% elsif current_user.role? :customer %>
-        $<%= @item.current_price %></i>
-    <% end %>
-
+    </div>
 </div>
