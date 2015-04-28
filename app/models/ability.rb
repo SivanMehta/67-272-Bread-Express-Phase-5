@@ -42,12 +42,12 @@ class Ability
         end
       
     else
-      # guests can only read domains covered (plus home pages)
-      can :read, Domain
+        # guests can read the items
+        can :read, Item
 
-      can :update, User do |u|
-            u.id == user.id
-        end
+        # guests can make a new customer account for themself
+        can :create, User
+        can :create, Customer
     end
   end
 end
