@@ -21,6 +21,9 @@ class Ability
             u.id == user.id
         end
 
+        # can read item information
+        can :read, Item
+
         # can see their own orders
         can :read, Order do |this_order|
             my_orders = Order.find_by_user_id(user.id).map { |o| o.user_id }
