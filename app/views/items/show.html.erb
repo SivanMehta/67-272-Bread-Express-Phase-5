@@ -25,7 +25,7 @@
                     <th>Price</th>
                     <th>Date Ended</th>
                 </thead>
-                <% @item.item_prices.chronological.reverse.each do |ip| %>
+                <% @item.item_prices.chronological.each do |ip| %>
                     <tr>
                         <td><%= number_to_currency(ip.price) %></td>
                         <td><%= !ip.end_date.nil? ? ip.end_date : "Current" %></td>
