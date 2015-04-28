@@ -33,7 +33,7 @@
                 <% end %>
             </table>
         <% elsif current_user.role? :customer %>
-            $<%= @item.current_price %></i>
+            <%= number_to_currency(@item.current_price) %></i>
         <% end %>
 
     </div>
