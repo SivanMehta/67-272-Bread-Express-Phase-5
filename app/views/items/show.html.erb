@@ -38,7 +38,7 @@
             <br /><br />
 
             <ul><h5><u>Similar Items</u></h5>
-                <% Item.all.take(5).each do |i| %>
+                <% Item.for_category(@item.category).each do |i| %>
                     <li><%= link_to i.name, item_path(i) %></li>
                 <% end %>
             </ul>
