@@ -34,6 +34,14 @@
             </table>
         <% elsif current_user.role? :customer %>
             <%= number_to_currency(@item.current_price) %></i>
+
+            <br /><br />
+
+            <ul><h5>Similar Items</h5>
+                <% Item.all.take(5).each do |i| %>
+                    <li><%= link_to i.name, item_path(i) %></li>
+                <% end %>
+            </ul>
         <% end %>
 
     </div>
