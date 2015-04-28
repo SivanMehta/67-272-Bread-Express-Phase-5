@@ -3,10 +3,10 @@ namespace :db do
   # creating a rake task within db namespace called 'populate'
   # executing 'rake db:populate' will cause this script to run
   task :populate => :environment do
-    # Drop the old db and recreate from scratch
+    puts "Drop the old db and recreate from scratch"
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
-    # Invoke rake db:migrate
+    puts "Invoke rake db:migrate"
     Rake::Task['db:migrate'].invoke
     Rake::Task['db:test:prepare'].invoke
     # Need gem to make this work when adding students later: faker
