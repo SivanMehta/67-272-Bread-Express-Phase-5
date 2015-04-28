@@ -4,6 +4,9 @@
         <p>
             <%= @item.description %>
         </p>
+        <p>
+            Total weight: <%= pluralize(@item.weight, "lbs") %>.
+        </p>
     </div>
     <div class = "col s5 offset-s1">
         <h4><%= @item.name %></h4>
@@ -17,6 +20,7 @@
             <% end %>
 
             <table>
+                <h4>Price History</h4>
                 <thead>
                     <th>Price</th>
                     <th>Date Ended</th>
