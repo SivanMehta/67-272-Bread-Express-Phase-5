@@ -16,6 +16,10 @@ class Ability
             c.user_id == user.id
         end
 
+        can :show, User do |u|
+            u.id == user.id
+        end
+
         # they can update their own profile
         can :update, User do |u|
             u.id == user.id

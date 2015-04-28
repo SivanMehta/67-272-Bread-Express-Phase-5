@@ -1,24 +1,50 @@
-<%= simple_form_for @customer, html: { class: 'form-horizontal' } do |f| %>
+<%= simple_nested_form_for @customer do |customer_form| %>
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Customer</legend>
 
-    <%= f.input :first_name, input_html: {class: "avg"} %>
-    <%= f.input :last_name, input_html: {class: "avg"} %>
-    <%= f.input :phone, input_html: {class: "avg"} %>
-    <%= f.input :email, input_html: {class: "avg"} %>
+    <div class = "row">
+      <div class = "input-field col s3">
+        <%= customer_form.input :first_name %>
+      </div>
+      <div class = "input-field col s3">
+        <%= customer_form.input :last_name %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "input-field col s3">
+        <%= customer_form.input :phone %>
+      </div>
+      <div class = "input-field col s3">
+        <%= customer_form.input :email %>
+      </div>
+    </div>
 
+    <%= customer_form.simple_fields_for :user do |user_form| %>
+      <div class = "row">
+        <div class = "input-field col s4">
+            <%= user_form.label :username %><br />
+            <%= user_form.text_field :username %>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "input-field col s4">
+            <%= user_form.label :password %><br />
+            <%= user_form.password_field :password %>
+        </div>
+        <div class = "input-field col s4">
+            <%= user_form.label :password_confirmation %><br />
+            <%= user_form.password_field :password_confirmation %>
+        </div>
+      </div>
+    <% end %>
 
+    <br />
 
-
-
-
-
-    
-
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', customers_path, :class => 'button alert radius' %>
+    <div class = "row">
+      <div class="form-actions">
+        <%= customer_form.submit "Sign Up", :class => 'button radius' %>
+        <%= link_to 'Cancel', :back, :class => 'button alert radius' %>
+      </div>
     </div>
   </fieldset>
 <% end %>
