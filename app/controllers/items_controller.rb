@@ -32,8 +32,7 @@ class ItemsController < ApplicationController
 
         if @item.save
             # if saved to database
-            flash[:notice] = "#{@item.name} has been created."
-            redirect_to @item # go to show project page
+            redirect_to item_path(@item), notice: "#{@item.name} was added to the system."
         else
             # return to the 'new' form
             render :action => 'new'
@@ -46,6 +45,6 @@ class ItemsController < ApplicationController
         end
 
         def item_params
-            params.require(:item).permit(:name, :category, :picture, :units_per_item, :weight)
+            params.require(:item).permit(:name, :category, :picture, :units_per_item, :weight, :description)
         end
 end
