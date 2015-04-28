@@ -8,8 +8,8 @@
             Total weight: <%= pluralize(@item.weight, "lbs") %>.
         </p>
     </div>
-    <div class = "col s5 offset-s1">
-        <h4><%= @item.name %></h4>
+    <div class = "col s5 offset-s1 right-align">
+        <h2><%= @item.name %></h2>
         <% if current_user.role? :admin %>
             <%= simple_form_for @item_price, url: create_with_item_path(@item), method: :patch do |f| %>
                 <div class = "input-field">
@@ -33,11 +33,11 @@
                 <% end %>
             </table>
         <% elsif current_user.role? :customer %>
-            <%= number_to_currency(@item.current_price) %></i>
+            <h3><%= number_to_currency(@item.current_price) %></h3>
 
             <br /><br />
 
-            <ul><h5>Similar Items</h5>
+            <ul><h5><u>Similar Items</u></h5>
                 <% Item.all.take(5).each do |i| %>
                     <li><%= link_to i.name, item_path(i) %></li>
                 <% end %>
