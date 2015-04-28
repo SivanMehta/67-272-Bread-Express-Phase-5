@@ -14,7 +14,7 @@ namespace :db do
     require 'faker'
     require 'factory_girl_rails'
 
-    # Step 1: Create admins and workers
+    puts "Step 1: Create admins and workers"
     mark_user = User.new
     mark_user.username = "mark"
     mark_user.password = "secret"
@@ -29,6 +29,7 @@ namespace :db do
     mark.user_id = mark_user.id
     mark.active = true
     mark.save!
+    puts "\tcreated mark"
 
     alex_user = User.new
     alex_user.username = "alex"
@@ -44,6 +45,7 @@ namespace :db do
     alex.user_id = alex_user.id
     alex.active = true
     alex.save!
+    puts "\tcreated alex"
 
     baker_user = User.new
     baker_user.username = "baker"
@@ -51,6 +53,7 @@ namespace :db do
     baker_user.password_confirmation = "secret"
     baker_user.role = "baker"
     baker_user.save!
+    puts "\tcreated baker"
     
     shipper_user = User.new
     shipper_user.username = "shipper"
@@ -58,15 +61,17 @@ namespace :db do
     shipper_user.password_confirmation = "secret"
     shipper_user.role = "shipper"
     shipper_user.save!
+    puts "\tcreated shipper"
 
 
-    # Step 2: Create some items
+    puts "Step 2: Create some items"
     honey_wheat = FactoryGirl.create(:item, 
         name: "Honey Wheat Bread", 
         description: "Our original bread made with stone ground flour, clover honey and a lot of love. This versatile bread is great for toast, sandwiches, formal dinners and just when you need to munch.", 
         units_per_item: 1, 
         category: "bread", 
         weight: 1.0)
+        puts "\tcreated honey_wheat"
 
     cinnamon_swirl = FactoryGirl.create(:item, 
         name: "Cinnamon Swirl Bread", 
@@ -74,6 +79,7 @@ namespace :db do
         units_per_item: 1, 
         category: "bread", 
         weight: 1.0)
+        puts "\tcreated cinnamon_swirl"
 
     apple_cherry = FactoryGirl.create(:item, 
         name: "Apple Cherry Bread", 
@@ -81,6 +87,7 @@ namespace :db do
         units_per_item: 1, 
         category: "bread", 
         weight: 1.2)
+        puts "\tcreated apple_cherry"
 
     sourdough = FactoryGirl.create(:item, 
         name: "Sourdough Bread", 
@@ -88,6 +95,7 @@ namespace :db do
         units_per_item: 1, 
         category: "bread", 
         weight: 1.1)
+        puts "\tcreated sourdough"
 
     challah = FactoryGirl.create(:item, 
         name: "Challah Bread", 
@@ -95,6 +103,7 @@ namespace :db do
         units_per_item: 1, 
         category: "bread", 
         weight: 0.9)
+        puts "\tcreated challah"
 
     blueberry = FactoryGirl.create(:item, 
         name: "Blueberry Muffins", 
@@ -102,6 +111,7 @@ namespace :db do
         units_per_item: 12, 
         category: "muffins", 
         weight: 1.0)
+        puts "\tcreated blueberry"
 
     chocolate_zuke = FactoryGirl.create(:item, 
         name: "Chocolate Zucchini Muffins", 
@@ -109,6 +119,7 @@ namespace :db do
         units_per_item: 12, 
         category: "muffins", 
         weight: 1.1)
+        puts "\tcreated chocolate_zuke"
 
     apple_carrot = FactoryGirl.create(:item, 
         name: "Apple Carrot Muffins", 
@@ -116,6 +127,7 @@ namespace :db do
         units_per_item: 12, 
         category: "muffins", 
         weight: 1.1)
+        puts "\tcreated apple_carrot"
 
     croissants = FactoryGirl.create(:item, 
         name: "Crossiants", 
@@ -123,6 +135,7 @@ namespace :db do
         units_per_item: 4, 
         category: "pastries", 
         weight: 1.0)
+        puts "\tcreated croissants"
 
 
     breads = [honey_wheat, cinnamon_swirl, apple_cherry, sourdough, challah]
@@ -131,57 +144,73 @@ namespace :db do
     all_items = breads + muffins + pastries
     breads_and_muffins = breads + muffins
 
-    # Step 3: For each item, create a set of prices
+    puts "Step 3: For each item, create a set of prices"
     hw1 = FactoryGirl.create(:item_price, item: honey_wheat, price: 3.95, start_date: 24.months.ago.to_date)
     hw2 = FactoryGirl.create(:item_price, item: honey_wheat, price: 4.25, start_date: 14.months.ago.to_date)
     hw3 = FactoryGirl.create(:item_price, item: honey_wheat, price: 4.75, start_date: 42.weeks.ago.to_date)
     hw4 = FactoryGirl.create(:item_price, item: honey_wheat, price: 4.95, start_date: 6.months.ago.to_date)
     hw5 = FactoryGirl.create(:item_price, item: honey_wheat, price: 5.25, start_date: 4.weeks.ago.to_date)
+    puts "\tcreated honey_wheat prices"
 
     cs1 = FactoryGirl.create(:item_price, item: cinnamon_swirl, price: 4.25, start_date: 24.months.ago.to_date)
     cs2 = FactoryGirl.create(:item_price, item: cinnamon_swirl, price: 4.75, start_date: 13.months.ago.to_date)
     cs3 = FactoryGirl.create(:item_price, item: cinnamon_swirl, price: 4.95, start_date: 180.days.ago.to_date)
     cs4 = FactoryGirl.create(:item_price, item: cinnamon_swirl, price: 5.50, start_date: 3.weeks.ago.to_date)
+    puts "\tcreated cinnamon_swirl prices"
 
     ac1 = FactoryGirl.create(:item_price, item: apple_cherry, price: 4.95, start_date: 12.months.ago.to_date)
     ac2 = FactoryGirl.create(:item_price, item: apple_cherry, price: 5.95, start_date: 6.months.ago.to_date)
     ac3 = FactoryGirl.create(:item_price, item: apple_cherry, price: 6.95, start_date: 2.weeks.ago.to_date)
+    puts "\tcreated apple_carrot prices"
 
     sd1 = FactoryGirl.create(:item_price, item: sourdough, price: 4.25, start_date: 24.months.ago.to_date)
     sd2 = FactoryGirl.create(:item_price, item: sourdough, price: 4.75, start_date: 13.months.ago.to_date)
     sd3 = FactoryGirl.create(:item_price, item: sourdough, price: 4.95, start_date: 180.days.ago.to_date)
     sd4 = FactoryGirl.create(:item_price, item: sourdough, price: 5.50, start_date: 3.weeks.ago.to_date)
+    puts "\tcreated sourdough prices"
 
     ch1 = FactoryGirl.create(:item_price, item: challah, price: 4.95, start_date: 14.months.ago.to_date)
     ch2 = FactoryGirl.create(:item_price, item: challah, price: 5.50, start_date: 6.months.ago.to_date)
     ch3 = FactoryGirl.create(:item_price, item: challah, price: 5.75, start_date: 14.days.ago.to_date)
+    puts "\tcreated challah prices"
 
     bl1 = FactoryGirl.create(:item_price, item: blueberry, price: 7.95, start_date: 12.months.ago.to_date)
     bl2 = FactoryGirl.create(:item_price, item: blueberry, price: 8.50, start_date: 6.months.ago.to_date)
     bl3 = FactoryGirl.create(:item_price, item: blueberry, price: 8.95, start_date: 2.weeks.ago.to_date)
+    puts "\tcreated blueberry prices"
  
     cz1 = FactoryGirl.create(:item_price, item: chocolate_zuke, price: 7.95, start_date: 12.months.ago.to_date)
     cz2 = FactoryGirl.create(:item_price, item: chocolate_zuke, price: 8.50, start_date: 6.months.ago.to_date)
     cz3 = FactoryGirl.create(:item_price, item: chocolate_zuke, price: 8.95, start_date: 2.weeks.ago.to_date)
+    puts "\tcreated chocolate_zuke prices"
 
     ca1 = FactoryGirl.create(:item_price, item: apple_carrot, price: 7.95, start_date: 12.months.ago.to_date)
     ca2 = FactoryGirl.create(:item_price, item: apple_carrot, price: 8.50, start_date: 6.months.ago.to_date)
     ca3 = FactoryGirl.create(:item_price, item: apple_carrot, price: 8.95, start_date: 2.weeks.ago.to_date)
+    puts "\tcreated apple_carrot prices"
 
     cr1 = FactoryGirl.create(:item_price, item: croissants, price: 9.50, start_date: 6.months.ago.to_date)
+    puts "\tcreated croissant prices"
 
 
-    # Step 4: Create 120 customers and their associated users
+    puts "Step 4: Create 120 customers and their associated users"
+    i = 0
     120.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       this_user = FactoryGirl.create(:user)
       FactoryGirl.create(:customer, user: this_user, first_name: first_name, last_name: last_name)
+
+      i += 1
+      $stdout.flush
+      $stdout.write "\r\tcreated #{i}/120 customers... "
     end
+    puts "done!"
 
     all_customers = Customer.all - [mark, alex]
 
-    # Step 5: for each customer associate some addresses
+    puts "Step 5: for each customer associate some addresses"
+    i = 0
     all_customers.each do |customer|
       billing = FactoryGirl.create(:address, customer: customer, 
         recipient: "#{customer.proper_name}",
@@ -209,8 +238,14 @@ namespace :db do
           state: "#{Address::STATES_LIST.to_h.values.sample}",
           zip: "#{rand(100000).to_s.rjust(5,"0")}")          
       end
+
+      i += 1
+      $stdout.flush
+      $stdout.write "\r\tassociated addresses for #{i}/120 customers... "
     end
-    # Step 6: Create some orders for each customer
+    puts "done!"
+
+    puts "Step 6: Create some orders for each customer"
     # create credit cards to be used for order payments
     next_year = Date.today.year + 1
     credit_cards = [
@@ -225,6 +260,8 @@ namespace :db do
       CreditCard.new(341234567890123, next_year, 12),
       CreditCard.new(371234567890123, next_year, 12)
     ]
+
+    i = 0
     all_customers.each do |customer|
       c_address_ids = customer.addresses.map(&:id)
       customer_selections = all_items.shuffle
@@ -260,6 +297,11 @@ namespace :db do
         # reset the selection options
         customer_selections = all_items.shuffle
       end
+
+      i += 1
+      $stdout.flush
+      $stdout.write "\r\tgenerated orders for #{i}/120 customers... "
     end
+    puts "done!"
   end
 end
