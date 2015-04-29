@@ -25,7 +25,10 @@ class OrdersController < ApplicationController
   end
 
   def new
+  end
 
+  def edit
+    @order = Order.find(params[:id])
   end
 
   def create
