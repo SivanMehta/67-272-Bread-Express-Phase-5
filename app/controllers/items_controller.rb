@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
 
     def add_to_cart
         add_item_to_cart(@item.id)
+        flash[:notice] = "Added 1 #{@item.name} to cart"
         redirect_to @item
     end
 

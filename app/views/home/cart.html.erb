@@ -7,5 +7,24 @@
 <% elsif session[:cart].empty? %>
     Cart is Empty
 <% else %>
-    <%= session[:cart] %>
+    <table>
+        <thead>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <% session[:cart].keys.each do |i|%>
+                <tr>
+                    <td><%= Item.find(i).name %></td>
+                    <td><%= session[:cart][i] %></td>
+                    <td>More!</td>
+                    <td>Remove</td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <button>Checkout</button>
 <% end %>
