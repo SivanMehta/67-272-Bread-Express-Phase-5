@@ -22,6 +22,10 @@ BreadExpress::Application.routes.draw do
   get 'privacy' => 'home#privacy', as: :privacy
   get 'search' => 'home#search', as: :search
   get 'cylon' => 'errors#cylon', as: :cylon
+
+  # cart options
+  get 'cart' => 'home#cart', as: :cart
+  post "items/add_to_cart" => "items#add_to_cart"
   
   # Set the root url
   root :to => 'home#home'
