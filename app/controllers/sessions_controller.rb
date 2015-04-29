@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
+    include BreadExpressHelpers::Cart
+    
     def new
+        create_cart
     end
 
     def create

@@ -7,6 +7,11 @@
         <p>
             Total weight: <%= pluralize(@item.weight, "lbs") %>.
         </p>
+        <p>
+            <% if current_user.role? :customer %>
+                <%= button_to "Add To Card", add_to_cart_path %>
+            <% end %>
+        </p>
     </div>
     <div class = "col s5 offset-s1 right-align">
         <h2><%= @item.name %></h2>

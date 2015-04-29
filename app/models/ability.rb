@@ -28,6 +28,9 @@ class Ability
         # can read item information
         can :read, Item
 
+        # can add an item to the cart
+        can :add_to_cart, Item
+
         # can see their own orders
         can :read, Order do |this_order|
             my_orders = Order.find_by_user_id(user.id).map { |o| o.user_id }

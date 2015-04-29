@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
+    include BreadExpressHelpers::Cart
 
-    before_action :set_item, only: [:show, :edit, :update] #, :destroy]
+    before_action :set_item, only: [:show, :edit, :update, :add_to_cart]
     authorize_resource
 
     def index
@@ -9,10 +10,15 @@ class ItemsController < ApplicationController
     end
 
     def show
-        @item_price = ItemPrice.new
     end
 
     def edit
+    end
+
+    def add_to_cart
+        add_item_to_cart(@item.id)
+
+        redirect_to @item
     end
 
     def update

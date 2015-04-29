@@ -25,7 +25,7 @@ BreadExpress::Application.routes.draw do
 
   # cart options
   get 'cart' => 'home#cart', as: :cart
-  post "items/add_to_cart" => "items#add_to_cart"
+  post "items/:id/add_to_cart" => "items#add_to_cart", as: :add_to_cart
   
   # Set the root url
   root :to => 'home#home'

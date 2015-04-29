@@ -3,7 +3,9 @@
 </p>
 
 <% if session[:cart].nil? %>
+    Cart is Nil
+<% elsif session[:cart].empty? %>
     Cart is Empty
 <% else %>
-    <% session[:cart] %>
+    <%= session[:cart] %>
 <% end %>
