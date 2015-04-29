@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
     end
 
     def show
+        @item_price = ItemPrice.new
     end
 
     def edit
