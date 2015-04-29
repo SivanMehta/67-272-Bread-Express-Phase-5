@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
 
   before_action :check_login
-  before_action :set_order, only: [:show, :update, :destroy]
+  before_action :set_order, only: [:show, :update, :destroy] #:new
   authorize_resource
   
   def index
@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @order = Order.new
   end
 
   def edit

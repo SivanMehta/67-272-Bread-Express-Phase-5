@@ -4,13 +4,14 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
     rescue_from ActiveRecord::RecordNotFound do |exception|
-        redirect_to home_path, error: "Record not found in the system."
+        flash[:error] = "Record not found in the system."
+        redirect_to home_path
     end
 
     rescue_from CanCan::AccessDenied do |exception|
         flash[:error] = "You are not authorized to take this action"
         redirect_to home_path
-  end
+    end
   
     private
     # Handling authentication
