@@ -7,6 +7,7 @@
         <th>Recipient</th>
         <th>Items</th>
         <th>Cost</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,11 @@
             <% end %>
           </td>
           <td><%= number_to_currency order.grand_total %></td>
+          <td>
+          <%= link_to(edit_order_path(order), class: 'button tiny radius warning') do %>
+            Edit
+          <% end %>
+        </td>
         </tr>
       <% end %>
     </tbody>
