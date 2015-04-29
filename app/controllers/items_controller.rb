@@ -17,7 +17,6 @@ class ItemsController < ApplicationController
 
     def add_to_cart
         add_item_to_cart(@item.id)
-
         redirect_to @item
     end
 
