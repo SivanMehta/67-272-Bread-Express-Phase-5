@@ -1,1 +1,9 @@
-Wow that's some nice stuff you're ordering there!
+<p>
+    Wow that's some nice stuff you're ordering there!
+</p>
+
+<% if session[:cart].nil? %>
+    Cart is Empty
+<% else %>
+    <% session[:cart] %>
+<% end %>
