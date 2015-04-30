@@ -2,16 +2,49 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Order</legend>
 
-    <% if current_user.role?(:admin) %>
-      <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true %>
-    <% else %>
+    <% if current_user.role? :admin  %>
+      <div class = "input-field">
+        <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true %>
+      </div>
+      <div class = "input-field">
+        <%= f.input :address_id, collection: get_address_options, include_blank: true %>
+      </div>
+    <% elsif current_user.role? :customer %>
+      <% if session[:cart].empty? %>
+        Cart is Empty
+      <% else %>
+          <table>
+              <thead>
+                  <th>Item</th>
+                  <th>Quantity</th>
+              </thead>
+              <tbody>
+                  <% session[:cart].keys.each do |i|%>
+                      <tr>
+                          <td><%= Item.find(i).name %></td>
+                          <td><%= session[:cart][i] %></td>
+                      </tr>
+                  <% end %>
+              </tbody>
+          </table>
+        <% end %>
+
+      <b>Grand Total: </b><%= number_to_currency(cart_cost) %>
+
       <%= f.input :customer_id, as: :hidden, input_html: { value: current_user.customer.id } %>
+      <div class = "input-field">
+        Select an Address <br />
+        <%= f.select :address_id, get_address_options(current_user)%>
+      </div>
     <% end %>
 
-
     <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to "Cancel", orders_path, :class => 'button alert radius' %>
+      <div class = "actions">
+        <button class="btn green" type="submit" name="action">
+          <i class='mdi-content-add left'></i> Place Order
+        </button>
+        <%= link_to "Cancel", cart_path, :class => 'button alert radius' %>
+      </div>
     </div>
   </fieldset>
 <% end %>
