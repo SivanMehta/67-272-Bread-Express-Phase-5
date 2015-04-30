@@ -4,7 +4,5 @@
     Cart is Empty
 <% else %>
   <%= render :partial => "partials/cart" %>
+    <%= link_to ("<i class = 'mdi-content-add left'></i> Checkout").html_safe, new_order_path, :encode => "javascript", :class => "btn green" %>
 <% end %>
-
-<%= link_to ("<i class = 'mdi-content-add left'></i> Checkout").html_safe, new_order_path, :encode => "javascript",
-    :class => "btn green" %>
