@@ -1,1 +1,8 @@
-<%= render :partial => "partials/display_form" %>
+<%= render 'form' %>
+
+<%= link_to ("<i class='mdi-action-view-headline left'></i> Back to Addresses").html_safe,
+    addresses_path, 
+    :encode => "javascript", 
+    :class => "btn brown" %>
+
+<%= link_to ("<i class='mdi-action-delete left'></i> Delete").html_safe, addresses_path, data: { confirm: 'Are you sure?' }, method: :delete, :class => "btn red" %>

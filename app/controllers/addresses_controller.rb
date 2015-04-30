@@ -27,7 +27,7 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
     
     if @address.save
-      redirect_to addresses_path, notice: "The address was added to the system."
+      redirect_to customer_path(@address.customer_id), notice: "The address was added to the system."
     else
       render action: 'new'
     end
@@ -35,7 +35,7 @@ class AddressesController < ApplicationController
 
   def update
     if @address.update(address_params)
-      redirect_to addresses_path, notice: "The address was revised in the system."
+      redirect_to customer_path(@address.customer_id), notice: "The address was revised in the system."
     else
       render action: 'edit'
     end

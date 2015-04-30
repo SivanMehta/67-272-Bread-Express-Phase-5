@@ -1,21 +1,63 @@
 <%= simple_form_for @address, html: { class: 'form-horizontal' } do |f| %>
+  <!-- In case of errors, display them-->
+  <% if @address.errors.any? %>
+    <ul class = "collection with-header">
+      <li class = "collection-header">
+        <h4><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h4>
+      </li>
+      <% @address.errors.full_messages.each do |msg| %>
+        <li class = "collection-item"><i class = "mdi-communication-dnd-on"></i> <%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> Address</legend>
+    <legend><%= controller.action_name.capitalize %>ing Address</legend>
 
-    <% if current_user.role?(:admin) %>
-      <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
-    <% else %>
-      <%= f.input :customer_id, as: :hidden, input_html: { value: current_user.customer.id } %>
-    <% end %>
-
-    <%= f.input :recipient, input_html: {class: "avg"} %>
-    <%= f.input :street_1, input_html: {class: "avg"} %>
-    <%= f.input :street_2, input_html: {class: "avg"} %>
-    <%= f.input :city, input_html: {class: "avg"} %>
-    <%= f.input :state, collection: Address::STATES_LIST, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :zip, input_html: {class: "avg"} %>
-    <%= f.input :is_billing, label: 'Billing? ' %>
-    <%= f.input :active %>
+    <div class = "row">
+      <div class = "input-field col s6">
+        <%= f.input :recipient %>
+      </div>
+      <% if current_user.role?(:admin) %>
+        <div class = "input-field col s6">
+          <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
+        </div>
+      <% else %>
+        <div class = "input-field col s6">
+          <%= f.input :customer_id, as: :hidden, input_html: { value: current_user.customer.id } %>
+        </div>
+      <% end %>
+    </div>
+    <div class = "row">
+    <div class = "input-field col s6">
+      <%= f.label :street_1 %>
+      <%= f.text_field :street_1 %>
+    </div>
+    <div class = "input-field col s6">
+      <%= f.label :street_2 %>
+      <%= f.text_field :street_2 %>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "input-field col s6">
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+    <div class = "input-field col s3">
+      <%= f.label :zip %>
+      <%= f.text_field :zip %>
+    </div>
+    <div class = "col s3">
+      <%=  f.label :state %>
+      <%= f.select :state, Address::STATES_LIST  %>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "input-field">
+      <%= f.check_box :is_billing %>
+      <%= f.label :is_billing, "Billing Address?" %>
+    </div>
+  </div>
 
 
     <div class="form-actions">

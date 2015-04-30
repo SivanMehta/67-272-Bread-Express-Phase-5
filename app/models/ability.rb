@@ -44,9 +44,14 @@ class Ability
         can :create, Address
 
         can :update, Address do |this_address|
-            user_customer = Customer.find_by_user_id(user.id).id
+            user_customer = user.customer.id
             this_address.customer_id == user_customer
         end
+
+        can :read, Address do |this_address|
+            user_customer = user.customer.id
+            this_address.customer_id == user_customer
+        end 
       
     else
         # guests can read the items
