@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  include BreadExpressHelpers::Cart
+  include BreadExpressHelpers::Shipping
 
 
   before_action :check_login
@@ -34,9 +36,13 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_user.customer.id
+    @order.grand_total = calculate_cart_shipping + calculate_cart_items_cost
+    @order.date = Date.today
 
     if @order.save
-
+      save_each_item_in_cart(@order)
+      clear_cart
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
     else
       render action: 'new'
@@ -62,13 +68,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address_id, :customer_id)
+    params.require(:order).permit(:address_id)
   end
-
-
-
-
-
-
 
 end

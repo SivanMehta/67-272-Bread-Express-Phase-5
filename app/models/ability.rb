@@ -33,7 +33,7 @@ class Ability
 
         # can see their own orders
         can :read, Order do |this_order|
-            my_orders = Order.find_by_user_id(user.id).map { |o| o.user_id }
+            my_orders = Order.find_all_by_customer_id(user.customer.id).map { |o| o.id }
             my_orders.include? this_order.id
         end
 

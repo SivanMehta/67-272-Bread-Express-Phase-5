@@ -2,9 +2,6 @@
   <div class="small-7 columns">
     <%= render :partial => "order_details" %>
   </div>
-  <div class="small-5 columns">
-    <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
-  </div>
 </div>
 
 <% if logged_in? && current_user.role?(:customer) %>

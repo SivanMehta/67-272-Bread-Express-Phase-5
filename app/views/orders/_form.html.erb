@@ -16,7 +16,7 @@
           <%= render :partial => "partials/cart" %>
       <% end %>
 
-      <%= f.input :customer_id, as: :hidden, input_html: { value: current_user.customer.id } %>
+
       <div class = "input-field">
         Select an Address <br />
         <%= f.select :address_id, get_address_options(current_user)%>
