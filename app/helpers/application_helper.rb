@@ -1,4 +1,6 @@
 module ApplicationHelper
+    include BreadExpressHelpers::Cart
+    
     def get_address_options(user=nil)
         if user.nil? || user.role?(:admin)
             addresses = Address.active.by_recipient.to_a
@@ -14,5 +16,9 @@ module ApplicationHelper
         else
             return user_path(current_user.id)
         end
+    end
+
+    def cart_cost
+        calculate_cart_items_cost
     end
 end

@@ -22,5 +22,6 @@
         </tbody>
     </table>
 
-    <%= link_to "Checkout", new_order_path %>
+    <%= link_to ("<i class = 'mdi-content-add left'></i> Checkout").html_safe, new_order_path, :encode => "javascript",
+    :class => "btn green" %>
 <% end %>

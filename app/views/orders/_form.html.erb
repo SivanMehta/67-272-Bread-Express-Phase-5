@@ -43,7 +43,8 @@
         <button class="btn green" type="submit" name="action">
           <i class='mdi-content-add left'></i> Place Order
         </button>
-        <%= link_to "Cancel", cart_path, :class => 'button alert radius' %>
+        <%= link_to ("<i class = 'mdi-action-view-headline left'></i> Back to Cart").html_safe, cart_path, :encode => "javascript",
+    :class => "btn brown" %>
       </div>
     </div>
   </fieldset>
