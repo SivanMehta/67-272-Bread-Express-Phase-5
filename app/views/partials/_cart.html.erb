@@ -1,0 +1,25 @@
+<table>
+    <thead>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        </thead>
+    <tbody>
+        <% session[:cart].keys.each do |i|%>
+            <tr>
+                <td><%= Item.find(i).name %></td>
+                <td><%= session[:cart][i] %></td>
+                <td><%= number_to_currency Item.find(i).current_price * session[:cart][i] %></td>
+            </tr>
+        <% end %>
+        <tr>
+            <td><b>Subtotal</b></td><td></td><td><%= number_to_currency(cart_cost) %></td>
+        </tr>
+        <tr>
+            <td><b>Shipping</b></td><td></td><td><%= number_to_currency(shipping_cost) %></td>
+        </tr>
+        <tr>
+            <td><b>Grand Total</b></td><td></td><td><%= number_to_currency(shipping_cost + cart_cost) %></td>
+        </tr>
+    </tbody>
+</table>

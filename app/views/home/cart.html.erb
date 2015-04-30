@@ -1,27 +1,10 @@
 <% if session[:cart].nil? %>
-    Cart is Nil
+    Cart is Nil <!-- Should never get here -->
 <% elsif session[:cart].empty? %>
     Cart is Empty
 <% else %>
-    <table>
-        <thead>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th></th>
-            <th></th>
-        </thead>
-        <tbody>
-            <% session[:cart].keys.each do |i|%>
-                <tr>
-                    <td><%= Item.find(i).name %></td>
-                    <td><%= session[:cart][i] %></td>
-                    <td>More!</td>
-                    <td>Remove</td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
-
-    <%= link_to ("<i class = 'mdi-content-add left'></i> Checkout").html_safe, new_order_path, :encode => "javascript",
-    :class => "btn green" %>
+  <%= render :partial => "partials/cart" %>
 <% end %>
+
+<%= link_to ("<i class = 'mdi-content-add left'></i> Checkout").html_safe, new_order_path, :encode => "javascript",
+    :class => "btn green" %>

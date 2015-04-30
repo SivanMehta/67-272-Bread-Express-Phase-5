@@ -1,5 +1,6 @@
 module ApplicationHelper
     include BreadExpressHelpers::Cart
+    include BreadExpressHelpers::Shipping
     
     def get_address_options(user=nil)
         if user.nil? || user.role?(:admin)
@@ -20,5 +21,9 @@ module ApplicationHelper
 
     def cart_cost
         calculate_cart_items_cost
+    end
+
+    def shipping_cost
+        calculate_cart_shipping
     end
 end
