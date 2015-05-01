@@ -1,0 +1,15 @@
+<h3>Users</h3>
+<table class="hoverable">
+    <thead>
+        <th>Username</th>
+        <th>Role</th>
+    </thead>
+  <tbody>
+    <% @users.inactive.each do |u| %>
+      <tr>
+        <td><%= u.username %></td>
+        <td><%= u.role %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

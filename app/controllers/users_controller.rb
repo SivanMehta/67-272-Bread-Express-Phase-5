@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     end
 
     def show
+        @user = User.find(params[:id])
+
+        if @user.role? :customer # if you are looking at a customer
+            redirect_to @user.customer
+        end
     end
 
     def new

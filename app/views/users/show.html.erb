@@ -1,10 +1,7 @@
-<% if current_user.role? :admin %>
+<% if @user.role? :admin %>
     <%= render :partial => "admin" %>
-<% elsif current_user.role? :customer %>
-    <% @customer = Customer.find(current_user) %>
-    <%= render :partial => "customer" %>
-<% elsif current_user.role? :shipper %>
+<% elsif @user.role? :shipper %>
     <%= render :partial => "shipper" %>
-<% elsif current_user.role? :baker %>
+<% elsif @user.role? :baker %>
     <%= render :partial => "baker" %>
 <% end %>

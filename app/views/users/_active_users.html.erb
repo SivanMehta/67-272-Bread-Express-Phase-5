@@ -1,0 +1,16 @@
+<h3>Users</h3>
+<table class="hoverable">
+    <thead>
+        <th>Username</th>
+        <th>Role</th>
+    </thead>
+  <tbody>
+    <% @users.active.each do |u| %>
+      <tr>
+        <td><%= link_to u.username, user_path(u) %></td>
+        <td><%= u.role %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>

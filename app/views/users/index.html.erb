@@ -1,23 +1,8 @@
-<h3>Users</h3>
-<table class="hoverable">
-    <thead>
-        <th>username</th>
-        <th>active?</th>
-    </thead>
-  <tbody>
-    <% @users.each do |u| %>
-      <tr>
-        <td><%= u.username %></td>
-        <% if u.active %>
-          <td class="centered"><%= image_tag("check_green.gif") %></td>
-        <% else %>
-          <td class="centered"><%= link_to(image_tag("check_black.gif"), edit_user_path(active, status: true, from: user)) %></td>
-        <% end %>
-        <!-- see note in _task_details for comments on raw() -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<%= render partial: "partials/index_structure", locals: {model_name: "User", 
+                                                         primary: "active_users", 
+                                                         secondary: nil,
+                                                         sidebar: "inactive_users"} %>
 
+<br />
+<br />
 <%= link_to ("<i class='mdi-social-person-add left'></i> New User").html_safe, new_user_path, :encode => "javascript", :class => "btn waves-light green lighten-1" %>
