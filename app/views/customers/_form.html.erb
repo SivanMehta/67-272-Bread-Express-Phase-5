@@ -1,41 +1,46 @@
+<%= @customer.errors.full_messages %>
 <%= simple_nested_form_for @customer do |customer_form| %>
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Customer</legend>
 
     <div class = "row">
-      <div class = "input-field col s3">
+      <div class = "input-field col s6">
         <%= customer_form.input :first_name %>
       </div>
-      <div class = "input-field col s3">
+      <div class = "input-field col s6">
         <%= customer_form.input :last_name %>
       </div>
     </div>
     <div class = "row">
-      <div class = "input-field col s3">
+      <div class = "input-field col s6">
         <%= customer_form.input :phone %>
       </div>
-      <div class = "input-field col s3">
+      <div class = "input-field col s6">
         <%= customer_form.input :email %>
       </div>
     </div>
 
     <%= customer_form.simple_fields_for :user do |user_form| %>
-      <div class = "row">
-        <div class = "input-field col s4">
-            <%= user_form.label :username %><br />
-            <%= user_form.text_field :username %>
+      <% if controller.action_name.capitalize != "Edit" %> <!-- cannot edit the username once it has been created -->
+        <div class = "row">
+          <div class = "input-field col s4">
+              <%= user_form.label :username %><br />
+              <%= user_form.text_field :username %>
+          </div>
         </div>
-      </div>
-      <div class = "row">
-        <div class = "input-field col s4">
-            <%= user_form.label :password %><br />
-            <%= user_form.password_field :password %>
+        <div class = "row">
+          <div class = "input-field col s6">
+              <%= user_form.label :password %><br />
+              <%= user_form.password_field :password %>
+          </div>
         </div>
-        <div class = "input-field col s4">
-            <%= user_form.label :password_confirmation %><br />
-            <%= user_form.password_field :password_confirmation %>
+        <div class = "row">
+          <div class = "input-field col s6">
+              <%= user_form.label :password_confirmation %><br />
+              <%= user_form.password_field :password_confirmation %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
 
     <br />

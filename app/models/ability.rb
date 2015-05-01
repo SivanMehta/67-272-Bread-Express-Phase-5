@@ -26,6 +26,9 @@ class Ability
         can :update, User do |u|
             u.id == user.id
         end
+        can :update, Customer do |c|
+            c.user_id == user.id
+        end
 
         # can read item information
         can :read, Item
