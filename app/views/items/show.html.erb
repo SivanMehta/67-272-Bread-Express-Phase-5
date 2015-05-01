@@ -1,6 +1,10 @@
 <div class = "row">
     <div class = "item_info col s6">
+        <% if @item.picture.nil? %>
         <%= image_tag "img_not_available.png" %>
+        <% else %>
+            <p><%= image_tag @item.picture %></p>
+        <% end %>
         <p>
             <%= @item.description %>
         </p>
