@@ -1,21 +1,10 @@
 <div class = "row">
     <div class = "item_info col s6">
-        <% if @item.picture.nil? %>
-        <%= image_tag "img_not_available.png" %>
+        <% if @item.picture_url.nil? %>
+            <p><%= image_tag "img_not_available.png" %></p>
         <% else %>
             <p><%= image_tag @item.picture %></p>
         <% end %>
-        <p>
-            <%= @item.description %>
-        </p>
-        <p>
-            Total weight: <%= pluralize(@item.weight, "lbs") %>.
-        </p>
-        <p>
-            <% if current_user.role? :customer %>
-                <%= button_to "Add To Cart", add_to_cart_path %>
-            <% end %>
-        </p>
     </div>
     <div class = "col s5 offset-s1 right-align">
         <h2><%= @item.name %></h2>
@@ -43,6 +32,17 @@
             </table>
         <% elsif current_user.role? :customer %>
             <h3><%= number_to_currency(@item.current_price) %></h3>
+            <p>
+                Total weight: <%= pluralize(@item.weight, "lbs") %>.
+            </p>
+            <p>
+                <%= @item.description %>
+            </p>
+            <p>
+                <% if current_user.role? :customer %>
+                    <%= button_to "Add To Cart", add_to_cart_path %>
+                <% end %>
+            </p>
 
             <br /><br />
 
