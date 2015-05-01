@@ -9,7 +9,7 @@
         <th>Category</th>
         <th>Price</th>
         <th>Units per Item</th>
-        <% if current_user.role? :customer %>
+        <% if !current_user.nil? and current_user.role? :customer %>
           <th></th>
         <% end %>
       </tr>
@@ -21,7 +21,7 @@
           <td><%= item.category %></td>
           <td><%= number_to_currency(item.current_price) %></td>
           <td><%= pluralize(item.units_per_item, item.category) %></td>
-          <% if current_user.role? :customer %>
+          <% if !current_user.nil? and current_user.role? :customer %>
             <th><%= button_to "Add To Cart", add_to_cart_path(item) %></th>
           <% end %>
         </tr>

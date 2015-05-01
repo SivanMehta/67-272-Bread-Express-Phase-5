@@ -7,10 +7,10 @@ class Ability
     
     # set authorizations for different user roles
     if user.role? :admin
-      # they get to do it all
-    can :manage, :all
+        # they get to do it all
+        can :manage, :all
 
-    cannot :cart, :home
+        cannot :cart, :home
 
     elsif user.role? :customer
         # they can read their own profile
@@ -53,11 +53,14 @@ class Ability
         can :read, Address do |this_address|
             user_customer = user.customer.id
             this_address.customer_id == user_customer
-        end 
+        end
+
+        can :home, :home
       
     else
         # guests can read the items
         can :read, Item
+        can :home, :home
 
         # guests can make a new customer account for themself
         can :create, User

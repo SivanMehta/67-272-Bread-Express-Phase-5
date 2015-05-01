@@ -14,7 +14,7 @@
     </div>
     <div class = "col s5 offset-s1 right-align">
         <h2><%= @item.name %></h2>
-        <% if current_user.role? :admin %>
+        <% if !current_user.nil? and current_user.role? :admin %>
             <%= simple_form_for @item_price, url: create_with_item_path(@item), method: :patch do |f| %>
                 <div class = "input-field">
                   <i class = "mdi-editor-attach-money prefix"></i>
@@ -36,7 +36,7 @@
                     </tr>
                 <% end %>
             </table>
-        <% elsif current_user.role? :customer %>
+        <% elsif !current_user.nil? and current_user.role? :customer %>
             <h3><%= number_to_currency(@item.current_price) %></h3>
             <p>
                 <% if current_user.role? :customer %>
@@ -51,6 +51,8 @@
                     <li><%= link_to i.name, item_path(i) %></li>
                 <% end %>
             </ul>
+        <% else %> <!-- Baker, Shipper, Guest -->
+            <h3><%= number_to_currency(@item.current_price) %></h3>
         <% end %>
 
     </div>
