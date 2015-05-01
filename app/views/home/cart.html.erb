@@ -1,7 +1,7 @@
 <% if session[:cart].empty? %>
     Cart is Empty
     <% if current_user.role? :admin %>
-        (may because admins can't be here you loser)
+        (maybe because admins can't be here you loser)
     <% end %>
 <% else %>
   <%= render :partial => "partials/cart" %>
