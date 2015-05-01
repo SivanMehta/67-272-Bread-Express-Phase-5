@@ -5,6 +5,14 @@
         <% else %>
             <p><%= image_tag @item.picture, size: "450x450" %></p>
         <% end %>
+        <% if current_user.role? :admin %>
+            <p>
+                Total weight: <%= pluralize(@item.weight, "lbs") %>.
+            </p>
+            <p>
+                <%= @item.description %>
+            </p>
+        <% end %>
     </div>
     <div class = "col s5 offset-s1 right-align">
         <h2><%= @item.name %></h2>
