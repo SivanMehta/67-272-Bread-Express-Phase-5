@@ -1,23 +1,15 @@
 class HomeController < ApplicationController
-  include BreadExpressHelpers::Baking
+    include BreadExpressHelpers::Baking
 
-  def home
+    def home
+    end
 
+    def about
+    end
 
-  end
+    def privacy
+    end
 
-  def about
-  end
-
-  def privacy
-  end
-
-  def contact
-  end
-
-
-
-
-
-
+    def contact
+    end
 end
