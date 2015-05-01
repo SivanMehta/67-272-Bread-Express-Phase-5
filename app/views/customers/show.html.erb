@@ -2,7 +2,9 @@
   <div class="col s7">
     <%= render partial: "customer_details" %>
     <%= render partial: "list_of_addresses" %>
-    <%= link_to ("<i class='mdi-maps-place left'></i> New Address").html_safe, new_address_path, :encode => "javascript", :class => "btn waves-light green lighten-1" %>
+    <% if !current_user.nil? and current_user.role? :customer %>
+        <%= link_to ("<i class='mdi-maps-place left'></i> New Address").html_safe, new_address_path, :encode => "javascript", :class => "btn waves-light green lighten-1" %>
+    <% end %>
   </div>
   <div class="col s5">
     <%= render partial: "list_of_orders" %>
