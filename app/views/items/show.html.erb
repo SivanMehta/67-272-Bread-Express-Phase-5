@@ -1,9 +1,9 @@
 <div class = "row">
     <div class = "item_info col s6">
         <% if @item.picture_url.nil? %>
-            <p><%= image_tag "img_not_available.png", size: "450x450" %></p>
+            <p><%= image_tag "img_not_available.png", size: "450x450", title: "I'm sure it looks delicious" %></p>
         <% else %>
-            <p><%= image_tag @item.picture, size: "450x450" %></p>
+            <p><%= image_tag @item.picture, size: "450x450", title: "Delicious!" %></p>
         <% end %>
     </div>
     <div class = "col s5 offset-s1 right-align">
