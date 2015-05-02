@@ -8,6 +8,18 @@
   <b>Email</b>: <%= mail_to @customer.email, @customer.email, encode: "javascript" %>
 </p>
 
+<% if current_user.role? :admin %>
+    <p>
+        <b>Username:</b>: <%= @customer.user.username %>
+    </p>
+<% end %>
+
 <p>
   <em>A Bread Express customer since <%= @customer.created_at.year %>.</em>
 </p>
+
+<% if !current_user.nil? and current_user.role? :customer %>
+        <%= link_to ("<i class='mdi-maps-place left'></i> New Address").html_safe, new_address_path, :encode => "javascript", :class => "btn waves-light green lighten-1" %>
+<% end %>
+
+<%= render partial: "partials/object_options", locals: {model_name: "customer", object: @customer}  %>
