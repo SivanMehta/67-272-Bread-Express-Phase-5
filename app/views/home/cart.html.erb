@@ -1,8 +1,5 @@
 <% if session[:cart].empty? %>
     Cart is Empty
-    <% if current_user.role? :admin %>
-        (maybe because admins can't be here you loser)
-    <% end %>
 <% else %>
   <%= render :partial => "partials/cart" %>
     <%= link_to ("<i class = 'mdi-content-add left'></i> Checkout").html_safe, new_order_path, :encode => "javascript", :class => "btn green" %>

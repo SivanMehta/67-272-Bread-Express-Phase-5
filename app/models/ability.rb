@@ -9,9 +9,7 @@ class Ability
     if user.role? :admin
         # they get to do it all
         can :manage, :all
-
-        cannot :cart, :home
-
+        
     elsif user.role? :customer
         # they can read their own profile
         can :show, Customer do |c|  
