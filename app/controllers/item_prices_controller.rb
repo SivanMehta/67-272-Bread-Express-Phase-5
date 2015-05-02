@@ -7,7 +7,7 @@ class ItemPricesController < ApplicationController
 
         if @item_price.save!
             item = Item.find(@item_price.item_id)
-            flash[:notice] = "#{item.name} has been created."
+            flash[:notice] = "#{item.name} has been updated."
             redirect_to item
         else
             flash[:notice] = "Could not update price"
