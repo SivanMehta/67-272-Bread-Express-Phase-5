@@ -6,26 +6,25 @@
       <div class = "input-field">
         <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true %>
       </div>
+      <div class = "input-field">
+        Select an Address <br />
+        <%= f.select :address_id, get_address_options(current_user)%>
+      </div>
+
       <% if session[:cart].empty? %>
         Cart is Empty
       <% else %>
           <%= render :partial => "partials/cart" %>
+      <div class="form-actions">
+        <div class = "actions">
+          <button class="btn green" type="submit" name="action">
+            <i class='mdi-content-add left'></i> Place Order
+          </button>
+          <%= link_to ("<i class = 'mdi-action-view-headline left'></i> Back to Cart").html_safe, cart_path, :encode => "javascript",
+      :class => "btn brown" %>
+        </div>
+      </div>
 
-
-          <div class = "input-field">
-            Select an Address <br />
-            <%= f.select :address_id, get_address_options(current_user)%>
-          </div>
-
-          <div class="form-actions">
-            <div class = "actions">
-              <button class="btn green" type="submit" name="action">
-                <i class='mdi-content-add left'></i> Place Order
-              </button>
-              <%= link_to ("<i class = 'mdi-action-view-headline left'></i> Back to Cart").html_safe, cart_path, :encode => "javascript",
-          :class => "btn brown" %>
-            </div>
-          </div>
       <% end %>
     <% end %>
   </fieldset>

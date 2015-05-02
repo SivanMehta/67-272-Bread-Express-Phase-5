@@ -8,7 +8,7 @@ module ApplicationHelper
         else
             addresses = user.customer.addresses.by_recipient.to_a
         end
-          addresses.map{|addr| ["#{addr.recipient} : #{addr.street_1}", addr.id] }
+          addresses.map{|addr| ["#{addr.recipient} : #{addr.street_1}", addr.id, { :customer => "#{addr.customer_id}"}] }
     end
 
     def get_user_profile
