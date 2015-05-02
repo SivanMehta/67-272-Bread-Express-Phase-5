@@ -1,8 +1,7 @@
+<%= link_to ("<i class='mdi-social-person-add left'></i> New User").html_safe, new_customer_path, :encode => "javascript", :class => "btn waves-light green lighten-1" %>
+<br />
+<br />
 <%= render partial: "partials/index_structure", locals: {model_name: "User", 
                                                          primary: "active_users", 
                                                          secondary: nil,
                                                          sidebar: "inactive_users"} %>
-
-<br />
-<br />
-<%= link_to ("<i class='mdi-social-person-add left'></i> New User").html_safe, new_user_path, :encode => "javascript", :class => "btn waves-light green lighten-1" %>
