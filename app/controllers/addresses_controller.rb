@@ -43,8 +43,13 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    @address.destroy
-    redirect_to addresses_path, notice: "The address was removed from the system."
+    if !@address.is_destroyable?
+      flash[:error] = "Could not remove already shipped address"
+      redirect_to :back
+    else
+      @address.destroy
+      redirect_to customer_path(@address.customer_id), notice: "The address was removed from the system."
+    end
   end
 
   private
