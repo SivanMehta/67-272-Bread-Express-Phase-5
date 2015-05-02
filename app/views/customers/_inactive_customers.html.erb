@@ -1,24 +1,9 @@
 <% if @inactive_customers.empty? %>
-  <h4>No inactive customers at this time.</h4>
+  <h4>No inactive customers on this page</h4>
 <% else %>
-  <h4>Inactive Customers</h4>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th width="225">Name</th>
-        <th width="125">Phone</th>
-        <th width="200">Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @inactive_customers.each do |customer| %>
-        <tr>
-          <td><%= link_to customer.name, customer_path(customer) %></td>
-          <td><%= number_to_phone customer.phone %></td>
-          <td><%= mail_to customer.email, customer.email, encode: "javascript"  %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <ol><h4>Inactive</h4>
+    <% @inactive_customers.each do |customer| %>
+      <li><%= link_to customer.name, customer_path(customer) %></li>
+    <% end %>
+  </ol>
 <% end %>
-<p>&nbsp;</p>
