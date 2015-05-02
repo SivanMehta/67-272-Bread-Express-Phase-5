@@ -24,6 +24,8 @@
   <%= render partial: "partials/order_item_list", locals: {order_items: @order_items, date: @order.date} %>
 </p>
 
-<p>
-  <em>Thanks for being a Bread Express customer since <%= @order.customer.created_at.year %>.</em>
-</p>
+<% if current_user.role? :customer %>
+    <p>
+      <em>Thanks for being a Bread Express customer since <%= @order.customer.created_at.year %>.</em>
+    </p>
+<% end %> <!-- only thank customers when they are looking at their own orders-->
