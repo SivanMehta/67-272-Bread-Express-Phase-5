@@ -1,10 +1,24 @@
-<% unless @inactive_customers.empty? || !logged_in? %>
-  <div class="panel clearfix">
-    <h3>Inactive Customers</h3>
-    <ul>
+<% if @inactive_customers.empty? %>
+  <h4>No inactive customers at this time.</h4>
+<% else %>
+  <h4>Inactive Customers</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Name</th>
+        <th width="125">Phone</th>
+        <th width="200">Email</th>
+      </tr>
+    </thead>
+    <tbody>
       <% @inactive_customers.each do |customer| %>
-        <li><%= link_to customer.name, customer_path(customer) %></li>
+        <tr>
+          <td><%= link_to customer.name, customer_path(customer) %></td>
+          <td><%= number_to_phone customer.phone %></td>
+          <td><%= mail_to customer.email, customer.email, encode: "javascript"  %></td>
+        </tr>
       <% end %>
-    </ul>
-  </div>
+    </tbody>
+  </table>
 <% end %>
+<p>&nbsp;</p>
