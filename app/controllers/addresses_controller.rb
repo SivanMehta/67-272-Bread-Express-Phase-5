@@ -14,6 +14,7 @@ class AddressesController < ApplicationController
   end
 
   def show
+    @customer = @address.customer
   end
 
   def new
@@ -43,7 +44,7 @@ class AddressesController < ApplicationController
 
   def destroy
     @address.destroy
-    redirect_to addresss_url, notice: "The address was removed from the system."
+    redirect_to addresses_path, notice: "The address was removed from the system."
   end
 
   private

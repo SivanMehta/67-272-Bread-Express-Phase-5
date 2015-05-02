@@ -1,8 +1,9 @@
-<%= render 'form' %>
+<%= render :partial => "partials/display_form" %>
 
 <%= link_to ("<i class='mdi-action-view-headline left'></i> Back to Addresses").html_safe,
     addresses_path, 
     :encode => "javascript", 
     :class => "btn brown" %>
-
-<%= link_to ("<i class='mdi-action-delete left'></i> Delete").html_safe, addresses_path, data: { confirm: 'Are you sure?' }, method: :delete, :class => "btn red" %>
+ <% if current_user.role?(:admin) %>
+      <%= link_to ("<i class='mdi-action-delete left'></i> Delete").html_safe, address_path(@address), data: { confirm: "Are you sure you want to deactivate this address?" }, method: :delete, :encode => "javascript", :class => "btn red" %>
+<% end %>

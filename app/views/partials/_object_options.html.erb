@@ -9,7 +9,7 @@
     <% end %>
     
     <% if current_user.role?(:admin) %>
-      <%= link_to ("<i class='mdi-action-delete left'></i> Deactivate").html_safe, eval("#{model_name}_path(object)"), data: { confirm: "Are you sure you want to deactivate #{@customer.proper_name}?" }, method: :delete, :encode => "javascript", :class => "btn red" %>
+      <%= link_to ("<i class='mdi-action-delete left'></i> Deactivate").html_safe, eval("#{model_name}_path(object)"), data: { confirm: "Are you sure you want to deactivate #{@customer.name}?" }, method: :delete, :encode => "javascript", :class => "btn red" %>
     <% end %>
   </div>
 <% end %>
