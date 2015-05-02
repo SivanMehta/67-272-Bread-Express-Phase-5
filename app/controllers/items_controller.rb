@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
 
     def update
         if @item.update(item_params)
-            redirect_to items_path, notice: "The item was revised in the system."
+            redirect_to items_path, notice: "#{@item.name} was revised in the system."
         else
             render action: 'edit'
         end
@@ -44,6 +44,19 @@ class ItemsController < ApplicationController
         else
             # return to the 'new' form
             render :action => 'new'
+        end
+    end
+
+    def destroy
+        @item = Item.find(params[:id])
+        if !@item.is_destroyable?
+            flash[:error] = "Could not deactivate an already shipped item"
+            redirect_to :back
+        else
+            @item.destroy
+            @item.active = false
+            @item.save!
+            redirect_to items_path, notice: "The #{@item.name} was deactivated from the system."
         end
     end
 

@@ -11,6 +11,15 @@
         <p>
             <%= @item.description %>
         </p>
+        <div class="form-actions">
+    
+            <% if current_user.role?(:admin) %>
+                <%= link_to ("<i class='mdi-editor-mode-edit left'></i> Edit").html_safe, edit_item_path, :encode => "javascript", :class => "btn blue lighten-1" %>
+              &nbsp;&nbsp;
+            
+                <%= link_to ("<i class='mdi-action-delete left'></i> Deactivate").html_safe, item_path(@item), data: { confirm: "Are you sure you want to deactivate #{@item.name}?" }, method: :delete, :encode => "javascript", :class => "btn red" %>
+            <% end %>
+        </div>
     </div>
     <div class = "col s5 offset-s1 right-align">
         <h2><%= @item.name %></h2>
