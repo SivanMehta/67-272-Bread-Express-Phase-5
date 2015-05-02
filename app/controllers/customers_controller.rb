@@ -46,6 +46,12 @@ class CustomersController < ApplicationController
     end
   end
 
+  def destroy
+    @customer.active = false
+    @customer.save!
+    redirect_to customers_url
+  end
+
   private
   def set_customer
     @customer = Customer.find(params[:id])
