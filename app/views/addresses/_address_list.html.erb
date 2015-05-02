@@ -11,7 +11,7 @@
       <th>Recipient</th>
       <th>Address</th>
       <th>Billing?</th>
-      <th>&nbsp;</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -24,12 +24,8 @@
         <td>
           <%= render :partial => "partials/address_info", locals: {address: address} %>
         </td>
-        <td><%= address.is_billing ? "Yes" : "No" %></td>      
-        <td>
-          <%= link_to(edit_address_path(address), class: 'button tiny radius warning') do %>
-            &nbsp;Edit&nbsp;
-          <% end %>
-        </td>
+        <td><%= address.is_billing ? "Yes" : "No" %></td>     
+        <td><%= link_to ("<i class='mdi-editor-mode-edit left'></i> Edit").html_safe, edit_address_path(address), :encode => "javascript", :class => "btn blue" %></td> 
       </tr>
     <% end %>
   </tbody>
