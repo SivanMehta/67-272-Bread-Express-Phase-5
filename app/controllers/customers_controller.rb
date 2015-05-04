@@ -64,9 +64,9 @@ class CustomersController < ApplicationController
   end
 
   def reset_role_param
-    unless current_user.role? :customer
+    # unless current_user.role? :customer
       params[:customer][:user_attributes][:role] = "customer"
-    end
+    # end
   end
 
   def reset_username_param
