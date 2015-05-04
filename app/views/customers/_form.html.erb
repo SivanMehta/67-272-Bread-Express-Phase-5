@@ -62,11 +62,15 @@
 
     <br />
 
-    <div class = "row">
-      <div class="form-actions">
-        <%= customer_form.submit "Sign Up", :class => 'button radius' %>
-        <%= link_to 'Cancel', :back, :class => 'button alert radius' %>
-      </div>
-    </div>
+    <% if request.original_url.split("/")[-1] == "edit" %> <!-- if you are accessing this form from the edit page -->
+    <button class="btn blue" type="submit" name="action">
+      <i class="mdi-editor-mode-edit left"></i> Update Customer
+    </button>
+    <% else %> <!-- If you are accessing this form from the new page-->
+      <button class="btn green" type="submit" name="action">
+        <i class='mdi-social-person-add left'></i> Create Customer
+      </button>
+    <% end %>
+    
   </fieldset>
 <% end %>
