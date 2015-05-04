@@ -6,10 +6,12 @@
     </thead>
     <tbody>
         <% Item.all.each do |item| %>
-            <tr>
-                <td><%= item.name %></td>
-                <td><%= item.unshipped_quantity %></td>
-            </tr>
+            <% if item.unshipped_quantity > 0 %>
+                <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.unshipped_quantity %></td>
+                </tr>
+            <% end %>
         <% end %>
     </tbody>
 </table>
