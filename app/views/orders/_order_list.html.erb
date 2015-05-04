@@ -1,26 +1,34 @@
-  <h4><%= status %> Orders</h4>
-  <table class="hoverable">
-    <thead>
+<h4><%= status %> Orders</h4>
+<table class="hoverable">
+  <thead>
+    <tr>
+      <th>Date Placed</th>
+      <th>Recipient</th>
+      <th>Items</th>
+      <th>Cost</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
       <tr>
-        <th>Date Placed</th>
-        <th>Recipient</th>
-        <th>Items</th>
-        <th>Cost</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% orders.each do |order| %>
-        <tr>
-          <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
-          <td><%= link_to order.address.recipient, address_path(order.address) %></td>
-          <td>
-            <% order.order_items.each do |oi| %>
-              <%= oi.quantity %> <%= oi.item.name %><br />
-            <% end %>
+        <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
+        <td><%= link_to order.address.recipient, address_path(order.address) %></td>
+        <td>
+          <% order.order_items.each do |oi| %>
+            <%= oi.quantity %> <%= oi.item.name %><br />
+          <% end %>
+        </td>
+        <td><%= number_to_currency order.grand_total %></td>
+        <% if Order.paid.include? order %>
+          <td class="centered">
           </td>
-          <td><%= number_to_currency order.grand_total %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <% else %>
+          <td class="centered">
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= will_paginate orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
