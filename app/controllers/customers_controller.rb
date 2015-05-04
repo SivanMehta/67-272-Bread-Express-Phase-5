@@ -22,7 +22,6 @@ class CustomersController < ApplicationController
     # reformat phone w/ dashes when displayed for editing (preference; not required)
     @customer.phone = number_to_phone(@customer.phone)
     # should have a user associated with customer, but just in case...
-
   end
 
   def create
