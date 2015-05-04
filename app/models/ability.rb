@@ -58,16 +58,6 @@ class Ability
         end
 
         can :home, :home
-
-    elsif user.role? :shipper or user.role? :baker
-
-        can :read, User do |this_user|
-            this_user == user.id
-        end
-
-        can :update, User do |this_user|
-            this_user == user.id
-        end
         
     elsif user.role? :shipper or user.role? :baker
 
@@ -75,10 +65,11 @@ class Ability
             this_user.id == user.id
         end
 
-
         can :update, User do |this_user|
             this_user.id == user.id
         end
+
+        can :read, Item
 
     else
         # guests can read the items
