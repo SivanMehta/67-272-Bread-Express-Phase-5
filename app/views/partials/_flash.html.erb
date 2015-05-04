@@ -2,9 +2,9 @@
     <ul class = "collection">
         <% flash.each do |name, msg| %>
             <% if name == :alert %>
-                <li class="collection-item red"><%= msg %></li>
+                <li class="collection-item red"><i class = "mdi-content-block"></i> <%= msg %></li>
             <% else %>
-                <li class="collection-item green"><%= msg %></li>
+                <li class="collection-item green"><i class= "mdi-navigation-check"></i> <%= msg %></li>
             <% end %>
         <% end %>
     </ul>
