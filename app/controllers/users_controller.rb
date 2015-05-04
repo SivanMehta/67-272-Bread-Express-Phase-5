@@ -42,6 +42,19 @@ class UsersController < ApplicationController
         end
     end
 
+    def destroy
+        @user = User.find(params[:id])
+        if !@user.is_destroyable?
+            flash[:error] = "Could not deactivate an already shipped item"
+            redirect_to :back
+        else
+            @user.destroy
+            @user.active = false
+            @user.save!
+            redirect_to items_path, notice: "The #{@item.name} was deactivated from the system."
+        end
+    end
+
     private
         def user_params
             params.require(:user).permit(:username, :role, :password, :password_confirmation)
