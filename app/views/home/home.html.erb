@@ -5,10 +5,10 @@
         <%= image_tag "BreadPigs.jpg", title: "Oink!" %>
     <% end %>
     <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :baker) %>
-        <%= render :partial => "partials/baking_list" %>
+        <%= render :partial => "baking_list" %>
     <% end %>
     <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :shipper) %>
-        <%= render :partial => "orders/pending_orders" %>
+        <%= render :partial => "unshipped_order_items" %>
     <% end %>
     </div>
     <div class="col s4">
