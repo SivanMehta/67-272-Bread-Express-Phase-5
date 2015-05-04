@@ -9,6 +9,7 @@
     <% end %>
     <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :shipper) %>
         <%= render :partial => "unshipped_order_items" %>
+        <%= render :partial => "shipped_order_items" %>
     <% end %>
     </div>
     <div class="col s4">

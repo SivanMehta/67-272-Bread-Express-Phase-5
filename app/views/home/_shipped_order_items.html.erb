@@ -1,5 +1,5 @@
-<% if @unshipped_ois.any? %>
-    <h3>Unshipped Order Items</h3>
+<% if @shipped_ois.any? %>
+    <h3>Shipped Order Items</h3>
     <table class = "hoverable">
         <thead>
             <th>Item</th>
@@ -9,18 +9,18 @@
             <th></th>
         </thead>
         <tbody>
-            <% @unshipped_ois.each do |oi| %>
+            <% @shipped_ois.each do |oi| %>
                 <tr>
                     <td><%= oi.item.name %></td>
                     <td><%= render :partial => "partials/address_info", locals: {address: oi.order.address} %></td>
                     <td><%= oi.quantity %></td>
                     <td><%= oi.order.date.strftime('%m/%d/%y') %></td>
-                    <td><%= button_to "Mark as Shipped", toggle_path(oi) %></td>
+                    <td><%= button_to "Mark as unshipped", toggle_path(oi) %></td>
                 </tr>
             <% end %>
         </tbody>
     </table>
-    <%= will_paginate @unshipped_ois, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+    <%= will_paginate @shipped_ois, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 <% else %>
-    <h3>No unshipped Order Items</h3>
+    <h3>Shipped Order Items</h3>
 <% end %>
