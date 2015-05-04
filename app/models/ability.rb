@@ -33,6 +33,7 @@ class Ability
 
         # can add an item to the cart
         can :add_to_cart, Item
+        can :remove_from_cart, Item
 
         # can see their own orders
         can :read, Order do |this_order|

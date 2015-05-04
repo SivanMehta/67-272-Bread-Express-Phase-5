@@ -22,6 +22,13 @@ class ItemsController < ApplicationController
         redirect_to :back
     end
 
+    def remove_from_cart
+        @item = Item.find(params[:id])
+        remove_item_from_cart(@item.id)
+        flash[:notice] = "Removed all #{@item.name} to cart"
+        redirect_to :back
+    end
+
     def update
         if @item.update(item_params)
             redirect_to items_path, notice: "#{@item.name} was revised in the system."
