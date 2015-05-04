@@ -58,7 +58,7 @@ class Ability
         end
 
         can :home, :home
-      
+        
     else
         # guests can read the items
         can :read, Item

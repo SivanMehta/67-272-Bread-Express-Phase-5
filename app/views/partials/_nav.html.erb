@@ -23,6 +23,11 @@
                     <li><%= link_to "View Menu", items_path %></li>
                     <li><%= link_to "Cart", cart_path %></li>
                     <li><%= link_to current_user.customer.first_name, get_user_profile %></li>
+
+                <% elsif current_user.role? :baker or current_user.role? :shipper %>
+                    <li><%= link_to "View Menu", items_path %></li>
+                    <li><%= link_to current_user.username, get_user_profile %></li>
+
                 <% end %>
 
                 <!-- should always be able to see this -->
