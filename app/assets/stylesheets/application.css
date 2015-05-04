@@ -14,7 +14,7 @@
  *= require_tree .
  */
 
-.item_info
+.container
 {
-    float:right;
+    width: 85%;
 }

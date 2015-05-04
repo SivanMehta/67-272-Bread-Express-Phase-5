@@ -1,6 +1,11 @@
-<% flash.each do |name, msg| %>
-  <div data-alert data-options="animation_speed:500, animation:'fadeOut';" class="alert-box <%= flash[:notice] ? "success" : "warning" %> radius">
-    <a href="#" class="close">&times;</a>
-    <%= msg %>
-  </div>
+<% if flash.any? %>
+    <ul class = "collection">
+        <% flash.each do |name, msg| %>
+            <% if name == :alert %>
+                <li class="collection-item red"><%= msg %></li>
+            <% else %>
+                <li class="collection-item green"><%= msg %></li>
+            <% end %>
+        <% end %>
+    </ul>
 <% end %>

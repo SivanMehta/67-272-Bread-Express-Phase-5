@@ -2,7 +2,7 @@
     <div class="col s8">
     <% if !logged_in? or current_user.role? :customer %>
         <h2>Welcome To A &amp; M Bread Express</h2>
-        <%= image_tag "BreadPigs.jpg", title: "Oink!" %>
+        <%= image_tag "BreadPigs.jpg", title: "Oink!", :width => "100%" %>
     <% end %>
     <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :baker) %>
         <%= render :partial => "baking_list" %>
