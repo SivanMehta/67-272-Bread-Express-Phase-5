@@ -60,7 +60,6 @@ class ItemsController < ApplicationController
             flash[:error] = "Could not deactivate an already shipped item"
             redirect_to :back
         else
-            @item.destroy
             @item.active = false
             @item.save!
             redirect_to items_path, notice: "The #{@item.name} was deactivated from the system."
