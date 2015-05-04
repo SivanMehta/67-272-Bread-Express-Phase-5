@@ -14,12 +14,10 @@
     <%= render :partial => "partials/nav" %>
     
       <main>
-        <div class="small-12 columns" id="main_content">
           <div class = "container">
             <%= render :partial => "partials/flash" %>
             <%= yield %>
           </div>
-        </div>
       </main>
     <%= render partial: 'partials/footer' %>
   </body>
