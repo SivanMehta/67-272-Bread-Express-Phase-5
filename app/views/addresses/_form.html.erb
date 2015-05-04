@@ -53,16 +53,18 @@
     </div>
   </div>
   <div class = "row">
-    <div class = "input-field">
+    <div class = "input-field col s6">
       <%= f.check_box :is_billing %>
-      <%= f.label :is_billing, "Billing Address?" %>
+      <%= f.label :is_billing, "Billing?" %>
     </div>
   </div>
 
+  <br />
 
     <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to "Cancel", get_user_profile, :class => 'button alert radius' %>
+      <button class="btn blue" type="submit" name="action">
+        <i class="mdi-editor-mode-edit left"></i> Update Address
+      </button>
     </div>
   </fieldset>
 <% end %>
