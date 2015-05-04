@@ -1,7 +1,9 @@
-<% if @user.role? :admin %>
-    <%= render :partial => "admin" %>
-<% elsif @user.role? :shipper %>
-    <%= render :partial => "shipper" %>
-<% elsif @user.role? :baker %>
-    <%= render :partial => "baker" %>
-<% end %>
+<p>
+    <strong>Username:</strong> <%= @user.username %>
+</p>
+
+<p>
+    <strong>Role:</strong> <%= @user.role %>
+</p>
+
+<%= link_to ("<i class='mdi-editor-mode-edit left'></i> Edit").html_safe, edit_user_path, :encode => "javascript", :class => "btn blue lighten-1" %>

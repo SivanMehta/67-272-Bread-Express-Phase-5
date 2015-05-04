@@ -1,0 +1,40 @@
+<%= simple_form_for @user do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Order</legend>
+
+      <div class = "row">
+          <div class = "input-field col s6">
+              <%= f.label :username %><br />
+              <%= f.text_field :username %>
+          </div>
+          <% if !current_user.nil? and current_user.role? :admin %>
+            <div class = "input-field col s6">
+                <%= f.select :role, User::ROLES %>
+            </div>
+          <% end %>
+          </div>
+        <div class = "row">
+          <div class = "input-field col s6">
+              <%= f.label :password %><br />
+              <%= f.password_field :password %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "input-field col s6">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation %>
+          </div>
+        </div>
+      
+      <div class="form-actions">
+        <div class = "actions">
+          <button class="btn blue" type="submit" name="action">
+            <i class='mdi-editor-mode-edit left'></i> </i> Submit
+          </button>
+          <%= link_to ("<i class = 'mdi-action-view-headline left'></i> Back to User").html_safe, users_path, :encode => "javascript",
+      :class => "btn brown" %>
+        </div>
+      </div>
+
+  </fieldset>
+<% end %>
