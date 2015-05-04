@@ -50,6 +50,17 @@ class Item < ActiveRecord::Base
   def is_destroyable?
     @destroyable = self.order_items.shipped.empty?
   end
+
+  def unshipped_quantity
+      total = 0
+      self.order_items.each do |oi|
+        if oi.shipped_on.nil?
+          total += oi.quantity
+        end
+      end
+      total
+  end
+
   private
   
   def convert_to_inactive

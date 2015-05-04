@@ -1,7 +1,12 @@
 <div class="row">
     <div class="col s8">
     <h2>Welcome To A &amp; M Bread Express</h2>
+    <% if !logged_in? or current_user.role? :customer %>
         <%= image_tag "BreadPigs.jpg", title: "Oink!" %>
+    <% end %>
+    <% if current_user.role? :admin or current_user.role? :baker %>
+        <%= render :partial => "partials/baking_list" %>
+    <% end %>
     </div>
     <div class="col s4">
         <div class="panel clearfix">
@@ -17,13 +22,15 @@
             <% end %>
         </div>
         <br />
-        <p>
-            Bread Express is the smallest, but absolutely best, online bakery 
-            we know of.  You should order lots of our products now.  They are
-            delicious, nutritious and amazing in every way.  Why are you still 
-            reading this?  You should be ordering bread right now.  Stop reading 
-            and start ordering.  (Still reading? What are you waiting for?)
-        </p>
+        <% if !logged_in? or current_user.role? :customer %>
+            <p>
+                Bread Express is the smallest, but absolutely best, online bakery 
+                we know of.  You should order lots of our products now.  They are
+                delicious, nutritious and amazing in every way.  Why are you still 
+                reading this?  You should be ordering bread right now.  Stop reading 
+                and start ordering.  (Still reading? What are you waiting for?)
+            </p>
+        <% end %>
     </div>
 </div>
 

@@ -1,0 +1,15 @@
+<h3>To Be Shipped</h3>
+<table>
+    <thead>
+        <th>Item</th>
+        <th>Unshipped Items</th>
+    </thead>
+    <tbody>
+        <% Item.all.each do |item| %>
+            <tr>
+                <td><%= item.name %></td>
+                <td><%= item.unshipped_quantity %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
