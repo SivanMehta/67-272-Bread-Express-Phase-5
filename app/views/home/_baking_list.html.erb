@@ -1,6 +1,6 @@
 <% if Item.any_unshipped? %>
     <h3>Pending Items</h3>
-    <table>
+    <table class = "hoverable">
         <thead>
             <th>Item</th>
             <th>Unshipped Items</th>
@@ -17,5 +17,5 @@
         </tbody>
     </table>
 <% else %>
-    <h4>There are no pending items to be shipped</h4>
+    <h6>There are no pending items to be shipped</h6>
 <% end %>
