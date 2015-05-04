@@ -10,13 +10,13 @@ class HomeController < ApplicationController
         @oi = OrderItem.find(params[:id])
         if @oi.shipped_on.nil?
             @oi.shipped_on = Date.today
+            flash[:notice] = "Marked #{@oi.quantity} #{@oi.item.name.pluralize(@oi.quantity)} as shipped"
         else
             @oi.shipped_on = nil
+            flash[:notice] = "Marked #{@oi.quantity} #{@oi.item.name.pluralize(@oi.quantity)} as unshipped"
         end
 
         @oi.save!
-
-        flash[:notice] = "Toggled Order Item to cart"
         redirect_to :back
     end
 
