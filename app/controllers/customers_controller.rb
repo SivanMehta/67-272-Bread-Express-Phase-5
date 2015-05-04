@@ -22,7 +22,6 @@ class CustomersController < ApplicationController
     # reformat phone w/ dashes when displayed for editing (preference; not required)
     @customer.phone = number_to_phone(@customer.phone)
     # should have a user associated with customer, but just in case...
-
   end
 
   def create
@@ -64,9 +63,9 @@ class CustomersController < ApplicationController
   end
 
   def reset_role_param
-    unless current_user.role? :customer
+    # unless current_user.role? :customer
       params[:customer][:user_attributes][:role] = "customer"
-    end
+    # end
   end
 
   def reset_username_param
