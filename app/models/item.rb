@@ -61,6 +61,15 @@ class Item < ActiveRecord::Base
       total
   end
 
+  def self.any_unshipped?
+    Item.all.each do |i|
+      if i.unshipped_quantity > 0
+        return true
+      end
+    end
+    return false
+  end
+
   private
   
   def convert_to_inactive
