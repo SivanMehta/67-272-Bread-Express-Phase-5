@@ -5,12 +5,13 @@ class ItemPricesController < ApplicationController
         @item_price.start_date = Date.today
         @item_price.item_id = params[:item_id]
 
-        if @item_price.save!
+        if @item_price.save
             item = Item.find(@item_price.item_id)
             flash[:notice] = "#{item.name} has been updated."
             redirect_to item
         else
-            flash[:notice] = "Could not update price"
+            flash[:alert] = "Could not update price"
+            redirect_to Item.find(params[:item_id])
         end
     end
 
