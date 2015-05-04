@@ -19,6 +19,11 @@
     width: 85%;
 }
 
+.select-wrapper
+{
+    top: -8px;
+}
+
 body {
     display: flex;
     min-height: 100vh;
