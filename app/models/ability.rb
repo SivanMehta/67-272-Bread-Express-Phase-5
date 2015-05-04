@@ -71,6 +71,8 @@ class Ability
 
         can :read, Item
 
+        cannot :cart, :home
+
     else
         # guests can read the items
         can :read, Item
