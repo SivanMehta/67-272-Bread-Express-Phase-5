@@ -1,38 +1,31 @@
 <div class="row">
-    <% if !logged_in? or current_user.role? :customer %>
-        <div class="col s8">
-            <h2>Welcome To A &amp; M Bread Express</h2>
-            <%= image_tag "BreadPigs.jpg", title: "Oink!", :width => "100%" %>
-    </div>
-    <div class="col s4">
-        <div>
-            <% if !logged_in? %>
-                <h3>Customers:</h3>
-                <p>
-                    If you are a registered user, 
-                  <%= link_to "click here to login", login_path %>. If you want 
-                  to create an account with us, <%= link_to "please click to register", signup_path %>.
-                </p>
-            <% else %>
-                Welcome, <%= current_user.username %>!
+    <div class="col s12">
+        <ul class="tabs">
+            <li class = "tab col s4"><a href = "#homepage">Home</a></li>
+            <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :baker) %>
+                <li class = "tab col s4"><a href = "#baking">Baking</a></li>
             <% end %>
-        </div>
-        <br />
-            <p>
-                Bread Express is the smallest, but absolutely best, online bakery 
-                we know of.  You should order lots of our products now.  They are
-                delicious, nutritious and amazing in every way.  Why are you still 
-                reading this?  You should be ordering bread right now.  Stop reading 
-                and start ordering.  (Still reading? What are you waiting for?)
-            </p>
-        <% end %>
+            <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :shipper) %>
+                <li class = "tab col s4"><a href = "#shipping">Shipping</a></li>
+            <% end %>
+        </ul>
     </div>
+</div>
+
+<div class="row">
+        <div id = "homepage">
+            <%= render :partial => "homepage" %>
+        </div>
     <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :baker) %>
-        <%= render :partial => "baking_list" %>
+        <div id = "baking">
+            <%= render :partial => "baking_list" %>
+        </div>
     <% end %>
     <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :shipper) %>
-        <%= render :partial => "unshipped_order_items" %>
-        <%= render :partial => "shipped_order_items" %>
+        <div id = "shipping">
+            <%= render :partial => "unshipped_order_items" %>
+            <%= render :partial => "shipped_order_items" %>
+        </div>
     <% end %>
 </div>
 
