@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
     def destroy
         @item = Item.find(params[:id])
         if !@item.is_destroyable?
-            flash[:error] = "Could not deactivate an already shipped item"
+            flash[:alert] = "Could not deactivate an already shipped item"
             redirect_to :back
         else
             @item.active = false
