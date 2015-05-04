@@ -7,6 +7,9 @@
     <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :baker) %>
         <%= render :partial => "partials/baking_list" %>
     <% end %>
+    <% if !current_user.nil? and (current_user.role? :admin or current_user.role? :shipper) %>
+        <%= render :partial => "orders/pending_orders" %>
+    <% end %>
     </div>
     <div class="col s4">
         <div class="panel clearfix">

@@ -1,9 +1,7 @@
 <% if @pending_orders.empty? %>
   <h5><em>No pending orders at this time.</em></h5>
 <% else %>
-  <%= render :partial => "order_list", locals: {status: 'Pending', orders: @pending_orders} %> 
+  <%= render :partial => "orders/order_list", locals: {status: 'Pending', orders: @pending_orders} %> 
   <br />
-  <%= link_to ("<i class = 'mdi-content-add left'></i> New Order").html_safe, items_path, :encode => "javascript",
-    :class => "btn green" %>
 <% end %>
 
