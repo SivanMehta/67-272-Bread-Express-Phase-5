@@ -18,7 +18,11 @@
         <%= render :partial => "partials/cart" %>
     <div class="form-actions">
       <div class = "actions">
-        <button class="btn green" type="submit" name="action">
+        <% if get_address_options(current_user).empty? %>
+          <button class="btn green" type="submit" name="action" disabled>
+        <% else %>
+          <button class="btn green" type="submit" name="action">
+        <% end %>
           <i class='mdi-content-add left'></i> Place Order
         </button>
         <%= link_to ("<i class = 'mdi-action-view-headline left'></i> Back to Cart").html_safe, cart_path, :encode => "javascript",
