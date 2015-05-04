@@ -44,7 +44,7 @@ class AddressesController < ApplicationController
 
   def destroy
     if !@address.is_destroyable?
-      flash[:error] = "Could not remove already shipped address"
+      flash[:alert] = "Could not remove already shipped address"
       redirect_to :back
     else
       @address.destroy
