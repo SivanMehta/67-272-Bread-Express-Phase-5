@@ -3,7 +3,7 @@
 <% else %>
     <h4>Available Items</h4>
     <% @active_items.each do |item| %>
-        <div class="col s12 m4">
+        <div class="col s12 m6 l4">
             <div class="card">
                 <div class="card-image">
                     <% if item.picture_url.nil? %>
@@ -12,7 +12,7 @@
                         <p><%= image_tag item.picture, height: "200px", title: "Delicious!" %></p>
                     <% end %>
                 </div>
-                <div class="card-content">
+                <div class="card-content truncate">
                     <p><b><%= link_to item.name, item_path(item) %></b>: <%= number_to_currency(item.current_price) %></p>
                     <p><b>Units Per Item: </b><%= pluralize(item.units_per_item, item.category) %></p>
                 </div>
