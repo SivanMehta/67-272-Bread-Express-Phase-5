@@ -1,0 +1,26 @@
+<% if @active_items.empty? %>
+    <h4>No active items</h4>
+<% else %>
+    <% @active_items.each do |item| %>
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    <% if item.picture_url.nil? %>
+                    <p><%= image_tag "img_not_available.png", height: "200px", title: "I'm sure it looks delicious" %></p>
+                    <% else %>
+                        <p><%= image_tag item.picture, height: "200px", title: "Delicious!" %></p>
+                    <% end %>
+                </div>
+                <div class="card-content">
+                    <p><b><%= link_to item.name, item_path(item) %></b>: <%= number_to_currency(item.current_price) %></p>
+                    <p class="truncate"><%= item.description %></p>
+                </div>
+                <div class="card-action">
+                    <% if !current_user.nil? and (current_user.role? :customer  or current_user.role? :admin)%>
+                        <%= button_to "Add To Cart", add_to_cart_path(item) %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+<% end %>
