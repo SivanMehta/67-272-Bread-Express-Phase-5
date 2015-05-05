@@ -2,6 +2,11 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Order</legend>
 
+    <% if session[:cart].empty? %>
+      Cart is Empty
+    <% else %>
+        <%= render :partial => "partials/cart" %>
+
     <% if current_user.role? :admin  %>
       <div class = "input-field">
         <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true %>
@@ -12,10 +17,19 @@
       <%= f.select :address_id, get_address_options(current_user)%>
     </div>
 
-    <% if session[:cart].empty? %>
-      Cart is Empty
-    <% else %>
-        <%= render :partial => "partials/cart" %>
+    <div class = "row">
+      <div class = "input-field">
+        <%= f.label :credit_card_number %><br />
+        <%= f.text_field :credit_card_number %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "input-field">
+          <label class="string optional" for="order_expiration_date">Expiration Date</label><br />
+          <input type="date" class="datepicker" name="order[expiration_date]">
+      </div>
+    </div>
+
     <div class="form-actions">
       <div class = "actions">
         <% if get_address_options(current_user).empty? %>
@@ -28,7 +42,7 @@
         <%= link_to ("<i class = 'mdi-action-view-headline left'></i> Back").html_safe, :back, :encode => "javascript", :class => "btn brown" %>
       </div>
     </div>
-
     <% end %>
+
   </fieldset>
 <% end %>

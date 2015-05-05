@@ -36,15 +36,22 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+
+    @order.credit_card_number = params[:order][:credit_card_number]
+    @order.expiration_year = Date.parse(params[:order][:expiration_date]).year
+    @order.expiration_month = Date.parse(params[:order][:expiration_date]).month
+
     @order.customer_id = current_user.customer.id
     @order.grand_total = calculate_cart_shipping + calculate_cart_items_cost
     @order.date = Date.today
 
     if @order.save
       save_each_item_in_cart(@order)
-      clear_cart
+
+      @order.pay
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
     else
+      flash[:alert] = "Invalid credit card info"
       render action: 'new'
     end
   end
@@ -68,7 +75,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address_id)
+    params.require(:order).permit(:address_id, credit_card_attributes: [:credit_card_number, :expiration_date])
   end
 
 end
