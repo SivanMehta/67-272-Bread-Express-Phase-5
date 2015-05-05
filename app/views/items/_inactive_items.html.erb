@@ -1,6 +1,6 @@
 <% if !current_user.nil? and !current_user.role? :customer %>
   <% if @inactive_items.empty? %>
-    <h4>No inactive items at this time.</h4>
+    <p><em>There are no inactive items at this time.</em></p>
   <% else %>
     <h4>Inactive Items</h4>
     <table>

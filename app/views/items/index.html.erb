@@ -1,4 +1,10 @@
+<br />
+
+<% if !current_user.nil? and current_user.role? :admin %>
+    <%= link_to ("<i class='mdi-content-add left'></i> New Item").html_safe, new_item_path, :encode => "javascript", :class => "btn waves-light green lighten-1" %>
+<% end %>
+
 <%= render partial: "partials/index_structure", locals: {model_name: "item", 
                                                          primary: "carded_items", 
                                                          secondary: "inactive_items",
-                                                         sidebar: "add_item_button"} %>
+                                                         sidebar: ""} %>
