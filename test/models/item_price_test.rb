@@ -3,7 +3,6 @@ require 'test_helper'
 class ItemPriceTest < ActiveSupport::TestCase
   # test relationships
   should belong_to(:item)
-  should accept_nested_attributes_for(:item).allow_destroy(true)
 
   # test validations with matchers
   should validate_numericality_of(:price).is_greater_than_or_equal_to(0)
