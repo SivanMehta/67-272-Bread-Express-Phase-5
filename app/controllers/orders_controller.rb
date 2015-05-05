@@ -49,6 +49,7 @@ class OrdersController < ApplicationController
       save_each_item_in_cart(@order)
 
       @order.pay
+      clear_cart
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
     else
       flash[:alert] = "Invalid credit card info"
