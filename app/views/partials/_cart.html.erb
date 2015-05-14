@@ -4,7 +4,8 @@
         <th>Quantity</th>
         <th>Price</th>
         <th></th>
-        </thead>
+        <th></th>    
+    </thead>
     <tbody>
         <% session[:cart].keys.each do |i|%>
             <tr>
@@ -12,6 +13,8 @@
                 <td><%= session[:cart][i] %></td>
                 <td><%= number_to_currency Item.find(i).current_price * session[:cart][i] %></td>
                 <td><%= button_to "Remove From Cart", remove_from_cart_path(i) %></td>
+                <td><%= button_to "One More!", add_to_cart_path(i) %></td>
+
             </tr>
         <% end %>
         <tr>
