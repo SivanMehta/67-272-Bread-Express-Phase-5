@@ -1,6 +1,6 @@
 # Bread Express
 
-This project was created as the final phase of 67-272: Application Design and Development. This project was created to satisfy the following requirements, which are taken from the assignment brief.
+This project was created as the final phase of 67-272: Application Design and Development in Spring 2015. This project was created to satisfy the following requirements, which are taken from the assignment brief.
 
 > *What is Bread Express?*
 
